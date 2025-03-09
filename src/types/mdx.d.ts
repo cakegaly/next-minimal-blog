@@ -7,5 +7,6 @@ export type Frontmatter<T = {}> = {
 export type MDXData<T = {}> = {
   metadata: Frontmatter<T>;
   slug: string;
-  content: React.ReactNode;
+  content?: React.ReactNode;
+  rawContent: string;
 };

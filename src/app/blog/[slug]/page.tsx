@@ -3,6 +3,7 @@ import '@/styles/mdx.css';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { CustomMDX } from '@/components/content/custom-mdx';
 import { Icons } from '@/components/icons';
 import { Badge } from '@/components/shadcn-ui/badge';
 import { Button } from '@/components/shadcn-ui/button';
@@ -103,7 +104,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         )}
 
         {/* Article Content */}
-        <div className="mt-10 max-w-none leading-relaxed">{post.content}</div>
+        <CustomMDX source={post.rawContent} />
 
         {/* Footer */}
         <footer className="mt-10 border-t pt-8">
