@@ -1,0 +1,60 @@
+---
+title: npm / yarn / pnpm コマンド違い早見表
+date: 2025-02-03
+description: pnpm をメインで利用するようになってから、パッケージ操作コマンドで npm との違いをググることが増えました。npm, yarn, pnpm のコマンドを早見表としてまとめます。
+icon: typescript
+tags:
+  - typescript
+---
+
+## npm / yarn / pnpm のコマンド違いを比較
+
+最近、業務とプライベートの両方で `pnpm` をメインで使うようになりました。
+コマンド違い (特に npm) をド忘れしちゃうこともあり、都度ググっていましたが、
+自分でまとめてしまえ！ということで、よく使うコマンドの早見表をまとめます。
+
+### npm / yarn / pnpm の違い
+
+| マネージャ | 特徴                                                                                                                             |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **npm**    | Node.js 標準のパッケージマネージャ。v9 以降は `package-lock.json` の仕様が最適化され、速度も改善されている。                     |
+| **yarn**   | npm より高速なインストールと、より厳密な依存関係の管理が特徴。新しい Yarn では `plug'n'play` (PnP) モードも利用可能。            |
+| **pnpm**   | モジュールをグローバルに保存し、ハードリンクで共有することでディスク容量を節約。特にモノレポ環境でのパフォーマンスが優れている。 |
+
+## 目的別 npm / yarn / pnpm コマンド早見表
+
+| 操作                                | npm                              | yarn                      | pnpm                          |
+| ----------------------------------- | -------------------------------- | ------------------------- | ----------------------------- |
+| **パッケージをインストール**        | `npm install package`            | `yarn add package`        | `pnpm add package`            |
+| **開発用パッケージをインストール**  | `npm install package --save-dev` | `yarn add package --dev`  | `pnpm add package --save-dev` |
+| **グローバルにインストール**        | `npm install -g package`         | `yarn global add package` | `pnpm add -g package`         |
+| **全パッケージをインストール**      | `npm install`                    | `yarn install`            | `pnpm install`                |
+| **コマンドを実行（例: `eslint`）**  | `npx eslint .`                   | `yarn dlx eslint .`       | `pnpm dlx eslint .`           |
+| **ローカルパッケージを実行**        | `npm run script`                 | `yarn script`             | `pnpm run script`             |
+| **パッケージを削除**                | `npm uninstall package`          | `yarn remove package`     | `pnpm remove package`         |
+| **すべての依存関係を更新**          | `npm update`                     | `yarn upgrade`            | `pnpm update`                 |
+| **package.json のバージョンを更新** | `npm version patch`              | `yarn version --patch`    | `pnpm version patch`          |
+| **`package.json` を作成**           | `npm init`                       | `yarn init`               | `pnpm init`                   |
+| **`package.json` を対話形式で作成** | `npm init -y`                    | `yarn init -y`            | `pnpm init`                   |
+| **キャッシュをクリア**              | `npm cache clean --force`        | `yarn cache clean`        | `pnpm store prune`            |
+
+<Callout type="info" title="開発用パッケージについて">
+  個人的には `--save-dev` の代わりに `-D` を使う派です。 `npm` では `-D`
+  が使えないので注意。
+</Callout>
+
+---
+
+## 補足: コマンドの違いと注意点
+
+### キャッシュ管理
+
+- `npm cache clean` や `yarn cache clean` はキャッシュを削除するだけですが、
+  `pnpm store prune` は **不要になったパッケージをストレージから削除** します。
+- `pnpm` は `node_modules` に依存せずグローバルストアを活用するため、キャッシュ管理が異なります。
+
+### パッケージ実行
+
+- `npx` は `npm@5+` に組み込まれたツールで、一時的にパッケージを実行できます。
+- `pnpm dlx` は `npx` の `pnpm` 版で、同じく **インストールせずにパッケージを実行** できます。
+- `yarn` は `yarn dlx` を使用し、似た動作をします。

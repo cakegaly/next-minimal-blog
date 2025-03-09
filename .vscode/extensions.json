@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "naumovs.color-highlight",
+    "OfHumanBondage.react-proptypes-intellisense",
+    "PKief.material-icon-theme",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker",
+    "yzhang.markdown-all-in-one",
+    "Zignd.html-css-class-completion"
+  ]
+}

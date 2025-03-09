@@ -1,0 +1,17 @@
+# Build outputs
+.next/
+build/
+dist/
+out/
+coverage/
+
+# Dependencies
+node_modules/
+yarn.lock
+package-lock.json
+
+# Environment and config
+.env*
+
+# Generated files
+*.generated.*

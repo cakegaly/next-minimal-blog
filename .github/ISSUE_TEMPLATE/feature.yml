@@ -1,0 +1,20 @@
+name: Feature Issue
+description: Add a Feature issue
+title: '[Feat]: '
+labels: ['enhancement']
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out feature issue!
+  - type: textarea
+    id: issue-detail
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: '- '
+    validations:
+      required: true

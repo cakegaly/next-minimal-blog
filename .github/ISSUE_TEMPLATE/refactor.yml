@@ -1,0 +1,20 @@
+name: Refactor Issue
+description: Add a Refactor issue
+title: '[Refactor]: '
+labels: ['refactor']
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out refactoring issue!
+  - type: textarea
+    id: issue-detail
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: '- '
+    validations:
+      required: true
