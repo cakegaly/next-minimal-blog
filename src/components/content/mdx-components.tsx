@@ -1,11 +1,10 @@
-import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 
 import { LinkPreview } from '@/components/content/link-preview';
 import { Callout } from '@/components/shared/callout';
 import { cn } from '@/lib/utils';
 
-export const components: MDXComponents = {
+export const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
@@ -193,4 +192,4 @@ export const components: MDXComponents = {
   Image,
   Callout,
   LinkPreview,
-} as MDXComponents;
+};
