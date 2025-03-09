@@ -74,6 +74,13 @@ This project is automatically deployed on **[Vercel](https://vercel.com/)** usin
 
 This project is licensed under the **MIT License**.
 
+## Thanks
+
+This project was inspired by and heavily influenced by the following open-source projects:
+
+- [shadcn/taxonomy](https://github.com/shadcn-ui/taxonomy) – A well-structured and minimal approach to building content-driven applications with Next.js and shadcn/ui.
+- [astro-nomy](https://github.com/mickasmt/astro-nomy) – A beautifully designed Astro blog template that influenced the content and design philosophy of this project.
+
 ---
 
 If you find this project useful, consider giving it a ⭐ on GitHub!
