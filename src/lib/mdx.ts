@@ -58,6 +58,6 @@ async function readMDXFile<T>(filePath: string): Promise<MDXData<T>> {
   return {
     metadata: data as Frontmatter<T>,
     slug: path.basename(filePath, path.extname(filePath)),
-    rawContent: content, // Store the raw content for rendering later
+    rawContent: content,
   };
 }
