@@ -1,20 +1,11 @@
 import fs from 'fs';
-import { compileMDX } from 'next-mdx-remote/rsc';
+import matter from 'gray-matter';
 import path from 'path';
-import rehypePrettyCode from 'rehype-pretty-code';
-import remarkGfm from 'remark-gfm';
 
-import { components } from '@/components/content/mdx-components';
-import { TechIcons } from '@/components/icons';
-import { Frontmatter, MDXData } from '@/types/mdx';
+import type { TechIcons } from '@/components/icons';
+import type { Frontmatter, MDXData } from '@/types/mdx';
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
-
-const rehypePrettyCodeOptions = {
-  theme: 'github-dark',
-  keepBackground: true,
-  defaultLang: 'plaintext',
-};
 
 export type BlogPost = MDXData<{
   thumbnail?: string;
@@ -61,21 +52,12 @@ async function getMDXFiles(dir: string): Promise<string[]> {
 
 async function readMDXFile<T>(filePath: string): Promise<MDXData<T>> {
   const rawContent = await fs.promises.readFile(filePath, 'utf-8');
-  const { frontmatter, content } = await compileMDX<Frontmatter<T>>({
-    source: rawContent,
-    components,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]],
-      },
-    },
-  });
+
+  const { data, content } = matter(rawContent);
 
   return {
-    metadata: frontmatter,
+    metadata: data as Frontmatter<T>,
     slug: path.basename(filePath, path.extname(filePath)),
-    content,
+    rawContent: content, // Store the raw content for rendering later
   };
 }
