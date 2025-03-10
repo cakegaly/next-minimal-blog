@@ -46,13 +46,13 @@ cp .env.example .env.local
 pnpm build
 ```
 
-### 4️. Start the development server
+### Start the development server
 
 ```sh
 pnpm dev
 ```
 
-### 5️. Open in your browser
+### Open in your browser
 
 Visit **[http://localhost:8888](http://localhost:8888)** to see the site in action 🎅
 
