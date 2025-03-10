@@ -35,12 +35,7 @@ export async function CustomMDX({
       rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]],
     };
 
-    const evaluateOptions = {
-      ...options,
-      React,
-    };
-
-    const { default: MDXContent } = await evaluate(source, evaluateOptions);
+    const { default: MDXContent } = await evaluate(source, options);
 
     const mergedComponents = {
       ...components,
