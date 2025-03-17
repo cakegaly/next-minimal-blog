@@ -10,7 +10,7 @@ A lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind C
 - **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first styling
 - **[shadcn/ui](https://ui.shadcn.com/)** – Beautiful, customizable UI components
 - **[MDX](https://mdxjs.com/)** – Markdown + React components
-- **[Rehype Pretty Code](https://rehype-pretty.pages.dev/)** – Code syntax highlighting
+- **[Rehype Pretty Code](https://rehype-pretty.pages.dev/)** – Code syntax highlighting with customizable themes
 - **[Vercel](https://vercel.com/)** – Hosting & deployment
 - **ESLint** + **Prettier** – Code formatting & linting
 <!-- - **[Storybook](https://storybook.js.org/)** – UI component testing -->
@@ -19,8 +19,8 @@ A lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind C
 
 This project follows a **minimalist approach** to building a **Next.js-based MDX blog**.
 
-- **Official-First**: Uses only **official Next.js libraries** whenever possible.
-- **Minimal & Fast**: Keeps dependencies **lightweight** and **performance-focused**.
+- **Official-First**: Prioritize using **official Next.js libraries** to ensure stability and maintainability.
+- **Minimal & Fast**: Keep the project **lightweight and fast**, avoiding unnecessary dependencies.
 
 ## Running Locally
 
@@ -33,7 +33,7 @@ git clone git@github.com:cakegaly/next-minimal-blog.git
 cd next-minimal-blog
 ```
 
-### Install dependencies & set up environment variables
+### Install dependencies & Set up environment variables
 
 ```sh
 pnpm install
@@ -56,13 +56,13 @@ pnpm dev
 
 Visit **[http://localhost:8888](http://localhost:8888)** to see the site in action 🎅
 
-<!-- ### 6️. Run Storybook
+<!-- ### Run Storybook
 
 ```sh
 pnpm storybook
 ```
 
-### 7️. Open Storybook
+### Open Storybook
 
 Visit **[http://localhost:6006](http://localhost:6006)** to preview UI components. -->
 
@@ -83,4 +83,4 @@ This project was inspired by and heavily influenced by the following open-source
 
 ---
 
-If you find this project useful, consider giving it a ⭐ on GitHub!
+If you find this project useful, feel free to give it a ⭐ on GitHub!
