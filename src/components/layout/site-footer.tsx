@@ -21,8 +21,8 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               target="_blank"
               rel="noreferrer"
               className={buttonVariants({ variant: 'outline', size: 'icon' })}
-              aria-label="Twitter"
-              title="Twitter (@cakegaly)"
+              aria-label="X(Twitter)"
+              title="X(Twitter, @cakegaly)"
             >
               <SocialIcons.twitter className="size-4" />
             </Link>
@@ -34,7 +34,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               target="_blank"
               rel="noreferrer"
               aria-label="Email"
-              title="Email (cakegaly -at- gmail -dot- com)"
+              title="Email (next-minimal-blog -at- example -dot- com)"
             >
               <Icons.mail className="size-4" />
             </Link>
