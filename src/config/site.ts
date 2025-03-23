@@ -9,12 +9,12 @@ export const siteConfig: SiteConfig = {
   name: 'next-minimal-blog',
   description:
     'next-minimal-blog is a lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind CSS, and shadcn/ui',
-  url: 'https://cakegaly.com',
-  ogImage: 'https://cakegaly.com/og.png',
+  url: 'https://next-minimal-blog-delta.vercel.app/',
+  ogImage: 'https://next-minimal-blog-delta.vercel.app/og.png',
   links: {
     twitter: 'https://twitter.com/cakegaly',
-    github: 'https://github.com/cakegaly',
+    github: 'https://github.com/cakegaly/next-minimal-blog',
   },
   copyRight: 'cakegaly',
-  email: 'cakegaly@gmail.com',
+  email: 'next-minimal-blog@example.com',
 };
