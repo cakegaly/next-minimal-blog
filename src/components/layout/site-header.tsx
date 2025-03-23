@@ -11,8 +11,8 @@ export function SiteHeader() {
           <Image
             src="/images/cakegaly.png"
             alt="logo"
-            width="40"
-            height="40"
+            width={40}
+            height={40}
             title="logo"
             className="rounded-full"
           />
