@@ -9,10 +9,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-screen-md items-center justify-between">
         <Link href="/" className="flex items-center space-x-3 rounded-sm p-2">
           <Image
-            src="/images/cakegaly.webp"
+            src="/images/cakegaly.png"
             alt="logo"
-            width="40"
-            height="40"
+            width={40}
+            height={40}
             title="logo"
             className="rounded-full"
           />

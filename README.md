@@ -1,19 +1,18 @@
 # Next.js Minimal Blog Template
 
-A lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind CSS, and shadcn/ui.
+![next-minimal-blog og image](/src/app/opengraph-image.png)
 
----
+This is a lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind CSS, and shadcn/ui.
 
 ## Tech Stack
 
-- **[Next.js](https://nextjs.org/)** – App Router, v15
+- **[Next.js](https://nextjs.org/)** – App Router, v15.2.3
 - **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first styling
 - **[shadcn/ui](https://ui.shadcn.com/)** – Beautiful, customizable UI components
 - **[MDX](https://mdxjs.com/)** – Markdown + React components
 - **[Rehype Pretty Code](https://rehype-pretty.pages.dev/)** – Code syntax highlighting with customizable themes
 - **[Vercel](https://vercel.com/)** – Hosting & deployment
-- **ESLint** + **Prettier** – Code formatting & linting
-<!-- - **[Storybook](https://storybook.js.org/)** – UI component testing -->
+- **ESLint** + **Prettier** (Flat Config) – Code formatting & linting
 
 ## Project Philosophy
 
@@ -56,19 +55,9 @@ pnpm dev
 
 Visit **[http://localhost:8888](http://localhost:8888)** to see the site in action 🎅
 
-<!-- ### Run Storybook
-
-```sh
-pnpm storybook
-```
-
-### Open Storybook
-
-Visit **[http://localhost:6006](http://localhost:6006)** to preview UI components. -->
-
 ## Deployment
 
-This project is automatically deployed on **[Vercel](https://vercel.com/)** using Static Site Generation (SSG).
+This project is automatically deployed on **[Vercel](https://next-minimal-blog-delta.vercel.app/)**.
 
 ## License
 
