@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { fontHack, fontNotoSansJp } from '@/assets/fonts';
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
 import { SiteFooter } from '@/components/layout/site-footer';

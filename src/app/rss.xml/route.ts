@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts } from '@/lib/mdx';
 
 export async function GET() {

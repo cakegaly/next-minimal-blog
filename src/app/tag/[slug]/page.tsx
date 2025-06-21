@@ -1,5 +1,5 @@
 import { tags } from '@/config/blog';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/lib/config';
 import { getBlogPostsByTagSlug } from '@/lib/mdx';
 import { absoluteUrl } from '@/lib/utils';
 

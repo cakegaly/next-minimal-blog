@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getOGData } from '@/actions/fetch-og-metadata';
 
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/lib/config';
 import { getBlogPostBySlug } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
 
