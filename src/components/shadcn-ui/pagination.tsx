@@ -52,6 +52,8 @@ function PaginationLink({
   return (
     <a
       aria-current={isActive ? 'page' : undefined}
+      aria-disabled={isActive || undefined}
+      tabIndex={isActive ? -1 : undefined}
       data-slot="pagination-link"
       data-active={isActive}
       className={cn(
@@ -59,6 +61,7 @@ function PaginationLink({
           variant: isActive ? 'outline' : 'ghost',
           size,
         }),
+        isActive && 'pointer-events-none cursor-default',
         className
       )}
       {...props}

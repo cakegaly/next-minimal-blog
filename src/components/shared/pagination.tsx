@@ -1,8 +1,9 @@
-import Link from 'next/link';
-
-import { cn } from '@/lib/utils';
-
-import { buttonVariants } from '@/components/shadcn-ui/button';
+import {
+  Pagination as PaginationCN,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+} from '@/components/shadcn-ui/pagination';
 import { Icons } from '@/components/icons';
 
 interface PaginationProps {
@@ -11,57 +12,95 @@ interface PaginationProps {
   basePath: string;
 }
 
+interface PaginationItem {
+  pageNumber: number;
+  disabled?: boolean;
+}
+
+const MAX_LINKS = 5;
+
+const generatePageItems = (
+  totalPages: number,
+  currentPage: number
+): PaginationItem[] => {
+  const allPages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  if (totalPages <= MAX_LINKS) {
+    return allPages.map((pageNumber) => ({
+      pageNumber,
+      disabled: pageNumber === currentPage,
+    }));
+  }
+
+  const halfLinks = Math.floor(MAX_LINKS / 2);
+  const endPage = Math.min(totalPages, currentPage + halfLinks);
+  const startPage = Math.max(1, endPage - MAX_LINKS + 1);
+
+  const pageRange = allPages.slice(startPage - 1, startPage - 1 + MAX_LINKS);
+
+  return pageRange.map((pageNumber) => ({
+    pageNumber,
+    disabled: pageNumber === currentPage,
+  }));
+};
+
+const generatePrevItem = (currentPage: number): PaginationItem | undefined =>
+  currentPage > 1 ? { pageNumber: currentPage - 1 } : undefined;
+
+const generateNextItem = (
+  totalPages: number,
+  currentPage: number
+): PaginationItem | undefined =>
+  currentPage < totalPages ? { pageNumber: currentPage + 1 } : undefined;
+
 export function Pagination({
   currentPage,
   totalPages,
   basePath,
 }: PaginationProps) {
-  const prevPage = currentPage > 1 ? currentPage - 1 : null;
-  const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+  const paginationItems = {
+    prev: generatePrevItem(currentPage),
+    targetPages: generatePageItems(totalPages, currentPage),
+    next: generateNextItem(totalPages, currentPage),
+  };
 
   return (
-    <div className="flex items-center justify-center space-x-6 py-8">
-      {prevPage ? (
-        <Link
-          href={`${basePath}${`/${prevPage}`}`}
-          className={cn(buttonVariants({ variant: 'outline' }), 'gap-1 pl-2.5')}
-        >
-          <Icons.chevronLeft className="h-4 w-4" />
-          <span className="sr-only">Previous</span>
-        </Link>
-      ) : (
-        <div
-          className={cn(
-            buttonVariants({ variant: 'outline' }),
-            'pointer-events-none gap-1 pl-2.5 opacity-50'
-          )}
-        >
-          <Icons.chevronLeft className="h-4 w-4" />
-          <span className="sr-only">Previous</span>
-        </div>
-      )}
-
-      <div className="font-mono text-sm">{`${currentPage} | ${totalPages}`}</div>
-
-      {nextPage ? (
-        <Link
-          href={`${basePath}/${nextPage}`}
-          className={cn(buttonVariants({ variant: 'outline' }), 'gap-1 pr-2.5')}
-        >
-          <span className="sr-only">Next</span>
-          <Icons.chevronRight className="h-4 w-4" />
-        </Link>
-      ) : (
-        <div
-          className={cn(
-            buttonVariants({ variant: 'outline' }),
-            'pointer-events-none gap-1 pr-2.5 opacity-50'
-          )}
-        >
-          <span className="sr-only">Next</span>
-          <Icons.chevronRight className="h-4 w-4" />
-        </div>
-      )}
-    </div>
+    <PaginationCN className="my-10">
+      <PaginationContent className="gap-3">
+        {paginationItems.prev && (
+          <PaginationItem>
+            <PaginationLink
+              href={`${basePath}/${paginationItems.prev.pageNumber}`}
+            >
+              <Icons.chevronLeft className="size-4" />
+              <span className="sr-only">Go to prev page</span>
+            </PaginationLink>
+          </PaginationItem>
+        )}
+        {paginationItems.targetPages.map((targetPage, index) => {
+          const isCurrent = targetPage.disabled;
+          return (
+            <PaginationItem key={index}>
+              <PaginationLink
+                isActive={isCurrent}
+                href={isCurrent ? '#' : `${basePath}/${targetPage.pageNumber}`}
+              >
+                {targetPage.pageNumber}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+        {paginationItems.next && (
+          <PaginationItem>
+            <PaginationLink
+              href={`${basePath}/${paginationItems.next.pageNumber}`}
+            >
+              <Icons.chevronRight className="size-4" />
+              <span className="sr-only">Go to next page</span>
+            </PaginationLink>
+          </PaginationItem>
+        )}
+      </PaginationContent>
+    </PaginationCN>
   );
 }

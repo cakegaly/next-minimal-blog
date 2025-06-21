@@ -13,7 +13,7 @@ export function SiteHeader() {
         <div className="container flex h-12 items-center justify-between border-b md:h-20">
           <Link
             href="/"
-            className="hover:bg-accent/20 flex items-center gap-2 rounded-md p-2"
+            className="hover:bg-accent/20 flex items-center gap-4 rounded-md p-2"
             aria-label="トップページに戻る"
             title="トップページに戻る"
           >
@@ -25,7 +25,9 @@ export function SiteHeader() {
               className="ring-border rounded-full ring-1"
               priority={true}
             />
-            <span className="hidden text-sm md:block">{siteConfig.name}</span>
+            <span className="hidden font-mono text-sm tracking-widest md:block">
+              {siteConfig.name}
+            </span>
           </Link>
           <ModeSwitch />
         </div>

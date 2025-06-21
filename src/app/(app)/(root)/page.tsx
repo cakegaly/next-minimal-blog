@@ -83,6 +83,17 @@ export default async function IndexPage() {
                 />
               ))}
             </div>
+            <div className="mt-10 text-center">
+              <Button asChild variant="ghost" className="h-9 px-2">
+                <Link
+                  href="/page/1"
+                  className="group inline-flex items-center gap-2"
+                >
+                  <span>{'See more posts'}</span>
+                  <Icons.chevronRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+            </div>
           </section>
 
           <aside className="sticky mt-8 shrink-0 lg:bottom-6 lg:mt-0 lg:w-80 lg:self-end">
