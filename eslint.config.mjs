@@ -1,18 +1,14 @@
 // @ts-check
+import eslintJs from '@eslint/js';
+import pluginNext from '@next/eslint-plugin-next';
+import configPrettier from 'eslint-config-prettier';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginTypeScript from 'typescript-eslint';
 
-import eslintPluginNext from '@next/eslint-plugin-next';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import * as eslintPluginImport from 'eslint-plugin-import';
-import eslintPluginReact from 'eslint-plugin-react';
-import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
-import tailwindcss from 'eslint-plugin-tailwindcss';
-import eslintPluginUnusedImports from 'eslint-plugin-unused-imports';
-import tsEslint from 'typescript-eslint';
-
-export default [
-  // Base configuration
+const config = [
+  // Base
   {
-    files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
     ignores: [
       '**/build/',
       '**/bin/',
@@ -24,100 +20,60 @@ export default [
     ],
   },
 
-  // React configuration
-  eslintPluginReact.configs.flat.recommended,
-  eslintPluginReact.configs.flat['jsx-runtime'],
+  // TypeScript
   {
-    plugins: {
-      'react-hooks': eslintPluginReactHooks,
-      '@next': eslintPluginNext,
-    },
-    rules: {
-      ...eslintPluginReactHooks.configs.recommended.rules,
-      ...eslintPluginNext.configs.recommended.rules,
-      ...eslintPluginNext.configs['core-web-vitals'].rules,
-      '@next/next/no-img-element': 'error',
-      'react/prop-types': 'off',
-    },
+    name: 'eslint/recommended',
+    rules: eslintJs.configs.recommended.rules,
   },
+  ...pluginTypeScript.configs.recommended,
 
-  // TypeScript configuration
-  tsEslint.configs.recommended,
+  // React
   {
-    languageOptions: {
-      parser: tsEslint.parser,
-      parserOptions: {
-        project: './tsconfig.json',
+    name: 'react/jsx-runtime',
+    plugins: {
+      react: pluginReact,
+    },
+    rules: pluginReact.configs['jsx-runtime'].rules,
+    settings: {
+      react: {
+        version: 'detect',
       },
     },
-    rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_' },
-      ],
-      '@typescript-eslint/explicit-function-return-type': 'off',
-    },
   },
-
-  // Tailwind CSS configuration
-  tailwindcss,
-
-  // Import organization
   {
+    name: 'react-hooks/recommended',
     plugins: {
-      import: eslintPluginImport,
-      'unused-imports': eslintPluginUnusedImports,
+      'react-hooks': pluginReactHooks,
+    },
+    rules: pluginReactHooks.configs.recommended.rules,
+  },
+
+  // Next.js
+  {
+    name: 'next/core-web-vitals',
+    plugins: {
+      '@next/next': pluginNext,
     },
     rules: {
-      'import/order': [
-        'error',
-        {
-          groups: [
-            'builtin',
-            'external',
-            'internal',
-            ['parent', 'sibling', 'index'],
-            'type',
-          ],
-          pathGroups: [
-            // React and Next.js imports
-            {
-              pattern: '{react,react-dom,react/**}',
-              group: 'builtin',
-              position: 'before',
-            },
-            { pattern: '{next,next/**}', group: 'builtin', position: 'before' },
-
-            // Project imports by path alias
-            { pattern: '@/types/**', group: 'internal', position: 'before' },
-            { pattern: '@/config/**', group: 'internal', position: 'before' },
-            { pattern: '@/lib/**', group: 'internal', position: 'before' },
-            { pattern: '@/hooks/**', group: 'internal', position: 'before' },
-            {
-              pattern: '@/components/shadcn-ui/**',
-              group: 'internal',
-              position: 'before',
-            },
-            {
-              pattern: '@/components/**',
-              group: 'internal',
-              position: 'before',
-            },
-            { pattern: '@/**', group: 'internal', position: 'before' },
-          ],
-          alphabetize: {
-            order: 'asc',
-            caseInsensitive: true,
-          },
-          'newlines-between': 'never',
-        },
-      ],
-      'import/newline-after-import': 'error',
-      'import/no-duplicates': 'error',
-      'unused-imports/no-unused-imports': 'error',
+      ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
     },
   },
 
-  // Prettier compatibility
-  eslintConfigPrettier,
+  // Prettier
+  {
+    name: 'prettier/config',
+    ...configPrettier,
+  },
+
+  // Project custom rules
+  {
+    name: 'project-custom',
+    rules: {
+      '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
+  },
 ];
+
+export default config;

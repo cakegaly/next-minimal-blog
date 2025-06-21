@@ -1,18 +1,18 @@
 # Next.js Minimal Blog Template
 
-![next-minimal-blog og image](/src/app/opengraph-image.png)
-
 This is a lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind CSS, and shadcn/ui.
 
 ## Tech Stack
 
-- **[Next.js](https://nextjs.org/)** – App Router, v15.2.3
-- **[Tailwind CSS](https://tailwindcss.com/)** – Utility-first styling
-- **[shadcn/ui](https://ui.shadcn.com/)** – Beautiful, customizable UI components
-- **[MDX](https://mdxjs.com/)** – Markdown + React components
-- **[Rehype Pretty Code](https://rehype-pretty.pages.dev/)** – Code syntax highlighting with customizable themes
-- **[Vercel](https://vercel.com/)** – Hosting & deployment
-- **ESLint** + **Prettier** (Flat Config) – Code formatting & linting
+- Framework - [Next.js](https://nextjs.org/15) (v15)
+- Language - [TypeScript](https://www.typescriptlang.org)
+- Styling - [Tailwind CSS](https://tailwindcss.com) (v4)
+- UI Components - [shadcn/ui](https://ui.shadcn.com)
+- Static Content Management - [MDX](https://mdxjs.com)
+- Syntax Highlight - [Rehype Pretty Code](https://rehype-pretty.pages.dev/) + [Shiki](https://github.com/shikijs/shiki)
+- Deployment - [Vercel](https://vercel.com)
+- Code Linting - [ESLint](https://eslint.org) (v9, Flat Config)
+- Code Formatting - [Prettier](https://prettier.io)
 
 ## Project Philosophy
 
@@ -27,6 +27,9 @@ Follow these steps to set up and run the project on your local machine.
 
 ### Clone the repository
 
+> [!NOTE]
+> This repository is set as a Public Template, so you can use it as a template by clicking "Use this template"!
+
 ```sh
 git clone git@github.com:cakegaly/next-minimal-blog.git
 cd next-minimal-blog
@@ -35,9 +38,11 @@ cd next-minimal-blog
 ### Install dependencies & Set up environment variables
 
 ```sh
-pnpm install
+pnpm i
 cp .env.example .env.local
 ```
+
+Please set `http://localhost:8888` to `NEXT_PUBLIC_APP_URL`.
 
 ### Build the project
 
@@ -67,6 +72,7 @@ This project is licensed under the **MIT License**.
 
 This project was inspired by and heavily influenced by the following open-source projects:
 
+- [shadcn/ui](https://github.com/shadcn-ui/shadcn-ui) – The best UI library for building modern, accessible design systems. This incredible project served as the foundation for the design of this template.
 - [shadcn/taxonomy](https://github.com/shadcn-ui/taxonomy) – A well-structured and minimal approach to building content-driven applications with Next.js and shadcn/ui.
 - [astro-nomy](https://github.com/mickasmt/astro-nomy) – A beautifully designed Astro blog template that influenced the content and design philosophy of this project.
 

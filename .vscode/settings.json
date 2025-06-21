@@ -7,8 +7,12 @@
   },
   "files.insertFinalNewline": true,
 
+  "biome.enabled": false,
   "eslint.enable": true,
   "eslint.useFlatConfig": true,
+  "eslint.options": {
+    "overrideConfigFile": "./eslint.config.mjs"
+  },
 
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "non-relative",

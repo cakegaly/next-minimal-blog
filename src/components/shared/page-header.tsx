@@ -1,5 +1,6 @@
-import { Separator } from '@/components/shadcn-ui/separator';
 import { cn } from '@/lib/utils';
+
+import { Separator } from '@/components/shadcn-ui/separator';
 
 interface PageHeaderProps {
   heading: string;
