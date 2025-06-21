@@ -1,5 +1,6 @@
-import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
+
+import { Icons } from '@/components/icons';
 
 type CalloutType = 'info' | 'note' | 'warning' | 'danger';
 
@@ -88,7 +89,7 @@ export function Callout({
           <div className={cn('mb-1 font-medium', titleClasses)}>
             {calloutTitle}
           </div>
-          <div className="text-foreground/90 [&>p:not(:first-child)]:mt-4 [&>p]:my-0">
+          <div className="text-foreground/90 [&>p]:my-0 [&>p:not(:first-child)]:mt-4">
             {children}
           </div>
         </div>

@@ -1,27 +1,26 @@
-import { siteConfig } from '@/config/site';
+import type { MetadataRoute } from 'next';
+
+import { tags } from '@/lib/blog';
+import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts } from '@/lib/mdx';
-import { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || siteConfig.url;
 
   const posts = await getAllBlogPosts();
-
-  const blogEntries = posts.map((post) => ({
+  const blogPages = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.metadata.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
+  }));
+
+  const tagPages = Object.keys(tags).map((slug) => ({
+    url: `${baseUrl}/tag/${slug}`,
   }));
 
   const staticPages = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1.0,
     },
   ];
 
-  return [...staticPages, ...blogEntries];
+  return [...staticPages, ...blogPages, ...tagPages];
 }
