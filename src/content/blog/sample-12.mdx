@@ -1,21 +1,26 @@
 ---
-title: Sample Post
-date: 2025-06-20
+title: How to Implement Dark Mode with Tailwind CSS
 description: This is a sample blog post of next-minimal-blog.
-icon: react
+date: 2025-02-12
 thumbnail: '/images/undraw/image-12.png'
 tags:
-  - react
-  - typescript
+  - nextjs
 ---
+
+<Callout>
+  The text below is from the [Tailwind
+  CSS](https://play.tailwindcss.com/uj1vGACRJA?layout=preview) docs. I copied it
+  here to test the markdown styles. **Tailwind is awesome. You should use it.**
+</Callout>
+
+Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
 
 By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
 
 We get lots of complaints about it actually, with people regularly asking us things like:
 
 > Why is Tailwind removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
-
-We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
+> We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
 
 The `@tailwindcss/typography` plugin is our attempt to give you what you _actually_ want, without any of the downsides of doing something stupid like disabling our base styles.
 
@@ -34,11 +39,10 @@ It adds a new `prose` class that you can slap on any block of vanilla HTML conte
     But a recent study shows that the celebrated appetizer may be linked to a
     series of rabies cases springing up around the country.
   </p>
-  <!-- ... -->
 </article>
 ```
 
-For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/main/README.md).
+For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/master/README.md).
 
 ---
 
@@ -48,9 +52,9 @@ What follows from here is just a bunch of absolute nonsense I've written to dogf
 
 It's important to cover all of these use cases for a few reasons:
 
-1. We want everything to look good out of the box.
-2. Really just the first reason, that's the whole point of the plugin.
-3. Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
+1.  We want everything to look good out of the box.
+2.  Really just the first reason, that's the whole point of the plugin.
+3.  Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
 
 Now we're going to try out another header style.
 
@@ -64,17 +68,14 @@ Something a wise person once told me about typography is:
 
 It's probably important that images look okay here by default as well:
 
-<figure>
-  <img
-    src="https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
-    alt=""
-  />
-  <figcaption>
-    Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-    roots in a piece of classical Latin literature from 45 BC, making it over
-    2000 years old.
-  </figcaption>
-</figure>
+<Image
+  src="/images/undraw/image-01.png"
+  width="1598"
+  height="1236"
+  alt="Image"
+/>
+
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
 
 Now I'm going to show you an example of an unordered list to make sure that looks good, too:
 
@@ -106,7 +107,7 @@ When a heading comes after a paragraph, we need a bit more space, like I already
 
 - **It's not a bad idea to add a third item either.**
 
-  I think it probably would've been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it. I'm going to press <kbd>Enter</kbd> now.
+  I think it probably would've been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it.
 
 After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird jumping right to a heading.
 
@@ -115,44 +116,6 @@ After this sort of list I usually have a closing statement or paragraph, because
 I think most people are going to use [highlight.js](https://highlightjs.org/) or [Prism](https://prismjs.com/) or something if they want to style their code blocks but it wouldn't hurt to make them look _okay_ out of the box, even with no syntax highlighting.
 
 Here's what a default `tailwind.config.js` file looks like at the time of writing:
-
-```tsx
-/**
- * Renders MDX content with provided components
- *
- * This component evaluates MDX source content and renders it with the provided components.
- * It passes the React runtime directly to the MDX evaluator to avoid React version conflicts,
- * which is a common issue in Next.js 15.2.0+ with MDX libraries.
- */
-export async function CustomMDX({
-  source,
-  additionalComponents,
-}: CustomMDXProps) {
-  try {
-    const options: EvaluateOptions = {
-      ...runtime,
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]],
-    };
-
-    const { default: MDXContent } = await evaluate(source, options);
-
-    const mergedComponents = {
-      ...mdxComponents,
-      ...(additionalComponents || {}),
-    };
-
-    return <MDXContent components={mergedComponents} />;
-  } catch (error) {
-    console.error('Error rendering MDX:', error);
-    return (
-      <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4">
-        An error occurred while rendering the content.
-      </div>
-    );
-  }
-}
-```
 
 ```js
 module.exports = {
@@ -171,18 +134,18 @@ Hopefully that looks good enough to you.
 
 Nested lists basically always look bad which is why editors like Medium don't even let you do it, but I guess since some of you goofballs are going to do it we have to carry the burden of at least making it work.
 
-1. **Nested lists are rarely a good idea.**
-   - You might feel like you are being really "organized" or something but you are just creating a gross shape on the screen that is hard to read.
-   - Nested navigation in UIs is a bad idea too, keep things as flat as possible.
-   - Nesting tons of folders in your source code is also not helpful.
-2. **Since we need to have more items, here's another one.**
-   - I'm not sure if we'll bother styling more than two levels deep.
-   - Two is already too much, three is guaranteed to be a bad idea.
-   - If you nest four levels deep you belong in prison.
-3. **Two items isn't really a list, three is good though.**
-   - Again please don't nest lists if you want people to actually read your content.
-   - Nobody wants to look at this.
-   - I'm upset that we even have to bother styling this.
+1.  **Nested lists are rarely a good idea.**
+    - You might feel like you are being really "organized" or something but you are just creating a gross shape on the screen that is hard to read.
+    - Nested navigation in UIs is a bad idea too, keep things as flat as possible.
+    - Nesting tons of folders in your source code is also not helpful.
+2.  **Since we need to have more items, here's another one.**
+    - I'm not sure if we'll bother styling more than two levels deep.
+    - Two is already too much, three is guaranteed to be a bad idea.
+    - If you nest four levels deep you belong in prison.
+3.  **Two items isn't really a list, three is good though.**
+    - Again please don't nest lists if you want people to actually read your content.
+    - Nobody wants to look at this.
+    - I'm upset that we even have to bother styling this.
 
 The most annoying thing about lists in Markdown is that `<li>` elements aren't given a child `<p>` tag unless there are multiple paragraphs in the list item. That means I have to worry about styling that annoying situation too.
 
@@ -206,31 +169,6 @@ The most annoying thing about lists in Markdown is that `<li>` elements aren't g
 - A closing list item, but with no nested list, because why not?
 
 And finally a sentence to close off this section.
-
-## We didn't forget about description lists
-
-Well, that's not exactly true, we first released this plugin back in 2020 and it took three years before we added description lists. But they're here now, so let's just be happy about that&hellip;okay? They can be great for things like FAQs.
-
-<dl>
-  <dt>Why do you never see elephants hiding in trees?</dt>
-  <dd>
-    Because they're so good at it. Lorem ipsum dolor sit amet consectetur
-    adipisicing elit. Quas cupiditate laboriosam fugiat.
-  </dd>
-  <dt>What do you call someone with no body and no nose?</dt>
-  <dd>
-    Nobody knows. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Culpa, voluptas ipsa quia excepturi, quibusdam natus exercitationem sapiente
-    tempore labore voluptatem.
-  </dd>
-  <dt>Why can't you hear a pterodactyl go to the bathroom?</dt>
-  <dd>
-    Because the pee is silent. Lorem ipsum dolor sit amet, consectetur
-    adipisicing elit. Ipsam, quas voluptatibus ex culpa ipsum, aspernatur
-    blanditiis fugiat ullam magnam suscipit deserunt illum natus facilis atque
-    vero consequatur! Quisquam, debitis error.
-  </dd>
-</dl>
 
 ## There are other elements we need to style
 
@@ -269,3 +207,13 @@ Phew, with any luck we have styled the headings above this text and they look pr
 Let's add a closing paragraph here so things end with a decently sized block of text. I can't explain why I want things to end that way but I have to assume it's because I think things will look weird or unbalanced if there is a heading too close to the end of the document.
 
 What I've written here is probably long enough, but adding this final sentence can't hurt.
+
+## GitHub Flavored Markdown
+
+I've also added support for GitHub Flavored Mardown using `remark-gfm`.
+
+With `remark-gfm`, we get a few extra features in our markdown. Example: autolink literals.
+
+A link like www.example.com or https://example.com would automatically be converted into an `a` tag.
+
+This works for email links too: contact@example.com.

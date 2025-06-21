@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 import { author, tags } from '@/config/blog';
@@ -6,11 +5,11 @@ import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';
 
-import { AspectRatio } from '@/components/shadcn-ui/aspect-ratio';
 import { ArticleShareButtons } from '@/components/content/article-share-buttons';
 import { Author } from '@/components/content/author';
 import { CustomMDX } from '@/components/content/custom-mdx';
 import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { BlurredHeroImage } from '@/components/shared/blurred-hero-image';
 import { LinkBadge } from '@/components/shared/link-badge';
 
 export const revalidate = false;
@@ -94,18 +93,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Breadcrumb items={breadcrumbItems} />
           </div>
         </div>
-        <div className="pt-4 lg:hidden">
+        <div className="pt-4">
           {thumbnailUrl && (
-            <AspectRatio ratio={39 / 20} className="bg-muted">
-              <Image
-                src={thumbnailUrl}
-                alt={post.metadata.title}
-                fill
-                className="size-full object-cover"
-                priority={true}
-                sizes="(max-width: 768px) 100vw, 768px"
-              />
-            </AspectRatio>
+            <BlurredHeroImage
+              imageUrl={thumbnailUrl}
+              alt={`${post.metadata.title} thumbnail image`}
+            />
           )}
         </div>
       </div>
