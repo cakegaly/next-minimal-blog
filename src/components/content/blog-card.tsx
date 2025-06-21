@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
-import { Icons, TechIcons } from '@/components/icons';
 import { BlogPost } from '@/lib/mdx';
 import { formatDate } from '@/lib/utils';
+
+import { Icons, TechIcons } from '@/components/icons';
 
 interface BlogCardProps {
   data: BlogPost;
@@ -15,11 +16,11 @@ export function BlogCard({ data }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group relative flex items-start gap-4 overflow-hidden rounded-lg border border-border bg-card p-5 shadow-sm transition-all hover:bg-accent/5 hover:shadow-md"
+      className="group border-border bg-card hover:bg-accent/5 relative flex items-start gap-4 overflow-hidden rounded-lg border p-5 shadow-sm transition-all hover:shadow-md"
     >
       {/* Eyecatch (TechIcon) */}
-      <div className="size-16 flex-shrink-0 rounded-lg bg-[#F3F4F6] p-4 transition-colors group-hover:bg-muted/70">
-        <Icon className="size-8 text-primary transition-colors group-hover:text-primary/80" />
+      <div className="group-hover:bg-muted/70 size-16 flex-shrink-0 rounded-lg bg-[#F3F4F6] p-4 transition-colors">
+        <Icon className="text-primary group-hover:text-primary/80 size-8 transition-colors" />
       </div>
 
       {/* Content */}
@@ -31,13 +32,13 @@ export function BlogCard({ data }: BlogCardProps) {
 
         {/* Description */}
         {metadata.description && (
-          <p className="line-clamp-2 text-sm text-muted-foreground">
+          <p className="text-muted-foreground line-clamp-2 text-sm">
             {metadata.description}
           </p>
         )}
 
         {/* Metadata */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-2 text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 pt-2 text-xs">
           <div className="flex items-center gap-1">
             <Icons.calendar className="size-4" />
             <time dateTime={metadata.date}>{formatDate(metadata.date)}</time>
@@ -50,7 +51,7 @@ export function BlogCard({ data }: BlogCardProps) {
                 {metadata.tags.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-medium"
+                    className="bg-muted inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium"
                   >
                     {tag}
                   </span>

@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation';
 
-import { BlogCard } from '@/components/content/blog-card';
-import { Pagination } from '@/components/shared/pagination';
 import { postsPerPage } from '@/config/blog';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { getPaginatedBlogPosts } from '@/lib/pagination';
+
+import { BlogCard } from '@/components/content/blog-card';
+import { Pagination } from '@/components/shared/pagination';
 
 interface BlogListPageProps {
   params: Promise<{ page: string }>;

@@ -1,9 +1,10 @@
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
+import matter from 'gray-matter';
+
+import type { Frontmatter, MDXData } from '@/types/mdx';
 
 import type { TechIcons } from '@/components/icons';
-import type { Frontmatter, MDXData } from '@/types/mdx';
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
 

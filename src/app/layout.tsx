@@ -1,13 +1,15 @@
-import '@/styles/globals.css';
-
+import type { Metadata } from 'next';
 import { fontHack, fontNotoSansJp } from '@/assets/fonts';
+
+import { siteConfig } from '@/config/site';
+import { cn } from '@/lib/utils';
+
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import { TailwindIndicator } from '@/components/shared/tailwind-indicator';
-import { siteConfig } from '@/config/site';
-import { cn } from '@/lib/utils';
-import type { Metadata } from 'next';
+
+import '@/styles/globals.css';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -62,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'bg-background min-h-screen font-sans antialiased',
           fontNotoSansJp.variable,
           fontHack.variable
         )}

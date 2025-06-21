@@ -3,7 +3,7 @@
 }
 
 [data-rehype-pretty-code-fragment] code {
-  @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0;
+  @apply grid min-w-full rounded-none border-0 bg-transparent p-0 break-words;
   counter-reset: line;
   box-decoration-break: clone;
 }
@@ -18,12 +18,12 @@
 }
 
 [data-rehype-pretty-code-fragment] [data-line-numbers] .line::before {
-  @apply mr-3 inline-block w-4 text-right text-muted-foreground/40;
+  @apply text-muted-foreground/40 mr-3 inline-block w-4 text-right;
   content: counter(line);
 }
 
 [data-rehype-pretty-code-title] {
-  @apply mt-4 rounded-t-lg border border-b-0 border-border/50 bg-muted/30 px-4 py-2 text-sm font-medium text-muted-foreground/80;
+  @apply border-border/50 bg-muted/30 text-muted-foreground/80 mt-4 rounded-t-lg border border-b-0 px-4 py-2 text-sm font-medium;
 }
 
 [data-rehype-pretty-code-title] + pre {

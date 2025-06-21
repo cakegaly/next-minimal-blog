@@ -1,6 +1,7 @@
+import { MetadataRoute } from 'next';
+
 import { siteConfig } from '@/config/site';
 import { getAllBlogPosts } from '@/lib/mdx';
-import { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || siteConfig.url;

@@ -5,7 +5,7 @@ import { ModeSwitch } from '@/components/layout/mode-switch';
 
 export function SiteHeader() {
   return (
-    <header className="container sticky top-0 z-40 border-b bg-background/50 backdrop-blur-md">
+    <header className="bg-background/50 sticky top-0 z-40 container border-b backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-screen-md items-center justify-between">
         <Link href="/" className="flex items-center space-x-3 rounded-sm p-2">
           <Image
@@ -16,7 +16,7 @@ export function SiteHeader() {
             title="logo"
             className="rounded-full"
           />
-          <span className="hidden font-mono text-foreground sm:inline">
+          <span className="text-foreground hidden font-mono sm:inline">
             next-minimal-blog
           </span>
         </Link>

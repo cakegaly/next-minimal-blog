@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
-import { Icons } from '@/components/icons';
-import { buttonVariants } from '@/components/shadcn-ui/button';
 import { cn } from '@/lib/utils';
+
+import { buttonVariants } from '@/components/shadcn-ui/button';
+import { Icons } from '@/components/icons';
 
 interface PaginationProps {
   currentPage: number;

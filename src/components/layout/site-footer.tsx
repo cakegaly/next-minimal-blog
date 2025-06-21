@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
-import { Icons, SocialIcons } from '@/components/icons';
-import { buttonVariants } from '@/components/shadcn-ui/button';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
+
+import { buttonVariants } from '@/components/shadcn-ui/button';
+import { Icons, SocialIcons } from '@/components/icons';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (

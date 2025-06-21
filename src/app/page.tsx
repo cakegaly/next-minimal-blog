@@ -1,10 +1,11 @@
 import Link from 'next/link';
 
-import { BlogCard } from '@/components/content/blog-card';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/shadcn-ui/button';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { getPaginatedBlogPosts } from '@/lib/pagination';
+
+import { Button } from '@/components/shadcn-ui/button';
+import { BlogCard } from '@/components/content/blog-card';
+import { Icons } from '@/components/icons';
 
 export default async function TopPage() {
   const allPosts = await getAllBlogPosts();
