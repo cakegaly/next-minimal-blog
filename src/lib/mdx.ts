@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 
 import { paginateItems, PaginationResult } from '@/lib/pagination';
 
-import type { TechIcons } from '@/components/icons';
+import { TechIcons } from '@/components/icons/tech-icons';
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
 

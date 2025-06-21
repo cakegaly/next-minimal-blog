@@ -4,7 +4,8 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
 import { buttonVariants } from '@/components/shadcn-ui/button';
-import { Icons, SocialIcons } from '@/components/icons';
+import { Icons } from '@/components/icons';
+import { SocialIcons } from '@/components/icons/social-icons';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
