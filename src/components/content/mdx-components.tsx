@@ -2,195 +2,235 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
+import { Button } from '@/components/shadcn-ui/button';
 import { LinkPreview } from '@/components/content/link-preview';
+import { getIconForLanguageExtension } from '@/components/icons/additional-icons';
 import { Callout } from '@/components/shared/callout';
+import { CopyButton } from '@/components/shared/copy-button';
 
-export const components = {
-  h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2
+export const mdxComponents = {
+  h1: ({ className, ...props }: React.ComponentProps<'h1'>) => (
+    <h1
       className={cn(
-        'border-border/50 mt-12 scroll-m-20 border-b pb-2 text-2xl font-bold tracking-tight first:mt-0',
+        'font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight',
         className
       )}
       {...props}
     />
   ),
-  h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3
-      className={cn(
-        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
-        className
-      )}
-      {...props}
-    />
-  ),
-  h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4
-      className={cn(
-        'mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
-        className
-      )}
-      {...props}
-    />
-  ),
-  a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <a
-      className={cn(
-        'text-primary decoration-primary/30 hover:text-primary/80 hover:decoration-primary/50 font-medium underline-offset-4',
-        className
-      )}
-      {...props}
-    />
-  ),
-  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p
-      className={cn(
-        'text-foreground/90 leading-7 [&:not(:first-child)]:mt-6',
-        className
-      )}
-      {...props}
-    />
-  ),
-  ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul
-      className={cn(
-        'marker:text-muted-foreground my-6 ml-6 list-disc',
-        className
-      )}
-      {...props}
-    />
-  ),
-  ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol
-      className={cn(
-        'marker:text-muted-foreground my-6 ml-6 list-decimal',
-        className
-      )}
-      {...props}
-    />
-  ),
-  li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className={cn('text-foreground/90 mt-2', className)} {...props} />
-  ),
-  blockquote: ({
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLQuoteElement>) => (
-    <blockquote
-      className={cn(
-        'border-primary text-foreground/80 mt-6 border-l-2 pl-6 italic',
-        className
-      )}
-      {...props}
-    />
-  ),
-  img: ({
-    className,
-    alt,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={cn('border-border/50 rounded-md border', className)}
-      alt={alt}
-      {...props}
-    />
-  ),
-  hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr className="border-border/50 my-8" {...props} />
-  ),
-  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="border-border/50 my-6 w-full overflow-y-auto rounded-lg border">
-      <table
-        className={cn('w-full border-collapse text-sm', className)}
-        {...props}
-      />
-    </div>
-  ),
-  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr
-      className={cn(
-        'border-border/50 m-0 border-t p-0',
-        'transition-colors duration-150',
-        'hover:bg-muted/30',
-        className
-      )}
-      {...props}
-    />
-  ),
-  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <th
-      className={cn(
-        'border-border/50 bg-background border px-4 py-3 text-left font-bold',
-        'text-foreground/90',
-        '[&[align=center]]:text-center [&[align=right]]:text-right',
-        className
-      )}
-      {...props}
-    />
-  ),
-  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <td
-      className={cn(
-        'border-border/50 border px-4 py-3 text-left',
-        '[&[align=center]]:text-center [&[align=right]]:text-right',
-        '[&>code]:bg-muted/30 [&>code]:rounded-sm [&>code]:px-1.5 [&>code]:py-0.5',
-        className
-      )}
-      {...props}
-    />
-  ),
-  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className={cn(
-        'border-border/50 my-6 overflow-x-auto rounded-lg border p-4',
-        'bg-[#111A1F] dark:bg-[#151A1E]',
-        'scrollbar-thin scrollbar-track-transparent scrollbar-thumb-muted',
-        className
-      )}
-      {...props}
-    />
-  ),
-  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
-    const isInline = !className?.includes('language-');
+  h2: ({ className, ...props }: React.ComponentProps<'h2'>) => {
     return (
-      <code
+      <h2
+        id={props.children
+          ?.toString()
+          .replace(/ /g, '-')
+          .replace(/'/g, '')
+          .replace(/\?/g, '')
+          .toLowerCase()}
         className={cn(
-          'relative font-mono text-sm',
-          // Inline code styling
-          isInline && [
-            'rounded px-[0.3rem] py-[0.2rem]',
-            'text-foreground/90 font-medium',
-          ],
-          // Code block styling
-          !isInline && [
-            'block',
-            'leading-relaxed',
-            '[&>span]:border-l-2 [&>span]:border-l-transparent [&>span]:pl-4',
-            '[&>span.line-highlighted]:border-l-primary [&>span.line-highlighted]:bg-primary/5',
-          ],
+          'font-heading mt-12 scroll-m-28 text-2xl font-medium tracking-tight first:mt-0 lg:mt-20 [&+p]:!mt-4',
           className
         )}
         {...props}
       />
     );
   },
-  'pre > code': ({
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLElement>) => (
-    <code
+  h3: ({ className, ...props }: React.ComponentProps<'h3'>) => (
+    <h3
       className={cn(
-        'grid min-h-0 w-full gap-0.5 p-4',
-        'text-[13px] leading-6',
-        '[&>span]:border-l-2 [&>span]:border-l-transparent [&>span]:pl-4',
-        '[&>span.line-highlighted]:border-l-primary [&>span.line-highlighted]:bg-primary/5',
+        'font-heading mt-8 scroll-m-28 text-xl font-semibold tracking-tight',
         className
       )}
       {...props}
     />
   ),
-  Image,
+  h4: ({ className, ...props }: React.ComponentProps<'h4'>) => (
+    <h4
+      className={cn(
+        'font-heading mt-8 scroll-m-28 text-lg font-medium tracking-tight',
+        className
+      )}
+      {...props}
+    />
+  ),
+  h5: ({ className, ...props }: React.ComponentProps<'h5'>) => (
+    <h5
+      className={cn(
+        'mt-8 scroll-m-28 text-lg font-medium tracking-tight',
+        className
+      )}
+      {...props}
+    />
+  ),
+  h6: ({ className, ...props }: React.ComponentProps<'h6'>) => (
+    <h6
+      className={cn(
+        'mt-8 scroll-m-28 text-base font-medium tracking-tight',
+        className
+      )}
+      {...props}
+    />
+  ),
+  a: ({ className, ...props }: React.ComponentProps<'a'>) => (
+    <a
+      className={cn('font-medium underline underline-offset-4', className)}
+      {...props}
+    />
+  ),
+  p: ({ className, ...props }: React.ComponentProps<'p'>) => (
+    <p
+      className={cn('leading-relaxed [&:not(:first-child)]:mt-6', className)}
+      {...props}
+    />
+  ),
+  strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <strong className={cn('font-medium', className)} {...props} />
+  ),
+  ul: ({ className, ...props }: React.ComponentProps<'ul'>) => (
+    <ul className={cn('my-6 ml-6 list-disc', className)} {...props} />
+  ),
+  ol: ({ className, ...props }: React.ComponentProps<'ol'>) => (
+    <ol className={cn('my-6 ml-6 list-decimal', className)} {...props} />
+  ),
+  li: ({ className, ...props }: React.ComponentProps<'li'>) => (
+    <li className={cn('mt-2', className)} {...props} />
+  ),
+  blockquote: ({ className, ...props }: React.ComponentProps<'blockquote'>) => (
+    <blockquote
+      className={cn('mt-6 border-l-2 pl-6 italic', className)}
+      {...props}
+    />
+  ),
+  img: ({ className, alt, ...props }: React.ComponentProps<'img'>) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className={cn('rounded-md', className)} alt={alt} {...props} />
+  ),
+  hr: ({ ...props }: React.ComponentProps<'hr'>) => (
+    <hr className="my-4 md:my-8" {...props} />
+  ),
+  table: ({ className, ...props }: React.ComponentProps<'table'>) => (
+    <div className="my-6 w-full overflow-y-auto">
+      <table
+        className={cn(
+          'relative w-full overflow-hidden border-none text-sm',
+          className
+        )}
+        {...props}
+      />
+    </div>
+  ),
+  tr: ({ className, ...props }: React.ComponentProps<'tr'>) => (
+    <tr
+      className={cn('last:border-b-none m-0 border-b', className)}
+      {...props}
+    />
+  ),
+  th: ({ className, ...props }: React.ComponentProps<'th'>) => (
+    <th
+      className={cn(
+        'px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right',
+        className
+      )}
+      {...props}
+    />
+  ),
+  td: ({ className, ...props }: React.ComponentProps<'td'>) => (
+    <td
+      className={cn(
+        'px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right',
+        className
+      )}
+      {...props}
+    />
+  ),
+  pre: ({ className, children, ...props }: React.ComponentProps<'pre'>) => {
+    return (
+      <pre
+        className={cn(
+          'no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </pre>
+    );
+  },
+  figure: ({ className, ...props }: React.ComponentProps<'figure'>) => {
+    return <figure className={cn(className)} {...props} />;
+  },
+  figcaption: ({
+    className,
+    children,
+    ...props
+  }: React.ComponentProps<'figcaption'>) => {
+    const iconExtension =
+      'data-language' in props && typeof props['data-language'] === 'string'
+        ? getIconForLanguageExtension(props['data-language'])
+        : null;
+
+    return (
+      <figcaption
+        className={cn(
+          'text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70',
+          className
+        )}
+        {...props}
+      >
+        {iconExtension}
+        {children}
+      </figcaption>
+    );
+  },
+  code: ({
+    className,
+    __raw__,
+    __src__,
+    ...props
+  }: React.ComponentProps<'code'> & {
+    __raw__?: string;
+    __src__?: string;
+  }) => {
+    // inline code style
+    if (typeof props.children === 'string') {
+      return (
+        <code
+          className={cn(
+            'bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none',
+            className
+          )}
+          {...props}
+        />
+      );
+    }
+
+    // default codeblock style
+    return (
+      <>
+        {__raw__ && <CopyButton value={__raw__} src={__src__} />}
+        <code {...props} />
+      </>
+    );
+  },
+
+  Image: ({
+    src,
+    className,
+    width,
+    height,
+    alt,
+    ...props
+  }: React.ComponentProps<'img'>) => (
+    <Image
+      className={cn('mt-6 rounded-md border', className)}
+      src={typeof src === 'string' ? src : ''}
+      width={Number(width)}
+      height={Number(height)}
+      alt={alt || ''}
+      {...props}
+    />
+  ),
+  Button,
   Callout,
   LinkPreview,
 };

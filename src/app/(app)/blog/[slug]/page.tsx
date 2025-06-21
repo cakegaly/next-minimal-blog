@@ -10,8 +10,6 @@ import { Button } from '@/components/shadcn-ui/button';
 import { CustomMDX } from '@/components/content/custom-mdx';
 import { Icons } from '@/components/icons';
 
-import '@/styles/mdx.css';
-
 export const revalidate = false;
 export const dynamic = 'force-static';
 export const dynamicParams = false;

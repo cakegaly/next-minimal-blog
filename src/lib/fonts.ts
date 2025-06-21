@@ -1,5 +1,5 @@
 import {
-  M_PLUS_1_Code as FontMono,
+  Geist_Mono as FontMono,
   M_PLUS_1 as FontSans,
   Inter,
 } from 'next/font/google';

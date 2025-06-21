@@ -116,6 +116,44 @@ I think most people are going to use [highlight.js](https://highlightjs.org/) or
 
 Here's what a default `tailwind.config.js` file looks like at the time of writing:
 
+```tsx
+/**
+ * Renders MDX content with provided components
+ *
+ * This component evaluates MDX source content and renders it with the provided components.
+ * It passes the React runtime directly to the MDX evaluator to avoid React version conflicts,
+ * which is a common issue in Next.js 15.2.0+ with MDX libraries.
+ */
+export async function CustomMDX({
+  source,
+  additionalComponents,
+}: CustomMDXProps) {
+  try {
+    const options: EvaluateOptions = {
+      ...runtime,
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [[rehypePrettyCode, rehypePrettyCodeOptions]],
+    };
+
+    const { default: MDXContent } = await evaluate(source, options);
+
+    const mergedComponents = {
+      ...mdxComponents,
+      ...(additionalComponents || {}),
+    };
+
+    return <MDXContent components={mergedComponents} />;
+  } catch (error) {
+    console.error('Error rendering MDX:', error);
+    return (
+      <div className="border-destructive/50 bg-destructive/10 text-destructive rounded-md border p-4">
+        An error occurred while rendering the content.
+      </div>
+    );
+  }
+}
+```
+
 ```js
 module.exports = {
   purge: [],

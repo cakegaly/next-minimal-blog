@@ -4,7 +4,9 @@ import { evaluate, type EvaluateOptions } from '@mdx-js/mdx';
 import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
 
-import { components } from '@/components/content/mdx-components';
+import { transformers } from '@/lib/highlight-code';
+
+import { mdxComponents } from '@/components/content/mdx-components';
 
 interface CustomMDXProps {
   source: string;
@@ -13,9 +15,14 @@ interface CustomMDXProps {
 }
 
 const rehypePrettyCodeOptions = {
-  theme: 'github-dark',
-  keepBackground: true,
+  theme: {
+    dark: 'github-dark',
+    light: 'github-light-default',
+  },
+  transformers,
+  // keepBackground: true,
   defaultLang: 'plaintext',
+  bypassInlineCode: true,
 };
 
 /**
@@ -39,7 +46,7 @@ export async function CustomMDX({
     const { default: MDXContent } = await evaluate(source, options);
 
     const mergedComponents = {
-      ...components,
+      ...mdxComponents,
       ...(additionalComponents || {}),
     };
 
