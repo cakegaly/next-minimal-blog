@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  devIndicators: false,
   typescript: {
     tsconfigPath: 'tsconfig.build.json',
   },

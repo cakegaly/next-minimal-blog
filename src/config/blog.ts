@@ -1,8 +1,6 @@
-import { AuthorConfig } from '@/types';
-
 import type { TechIcons } from '@/components/icons';
 
-export const author: AuthorConfig = {
+export const author = {
   slug: 'cakegaly',
   name: 'cakegaly',
   image: 'https://github.com/cakegaly.png',
