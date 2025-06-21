@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { author, tags } from '@/config/blog';
+import { author, tags } from '@/lib/blog';
 import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';

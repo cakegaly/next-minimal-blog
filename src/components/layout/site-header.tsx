@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import profilePic from '@/assets/images/cakegaly.webp';
 
 import { siteConfig } from '@/lib/config';
 
@@ -18,7 +17,7 @@ export function SiteHeader() {
             title="トップページに戻る"
           >
             <Image
-              src={profilePic}
+              src="/images/avatars/cakegaly.webp"
               alt="cakegaly icon"
               width={32}
               height={32}

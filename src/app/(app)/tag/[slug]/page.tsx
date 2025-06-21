@@ -1,4 +1,4 @@
-import { tags } from '@/config/blog';
+import { tags } from '@/lib/blog';
 import { siteConfig } from '@/lib/config';
 import { getBlogPostsByTagSlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';

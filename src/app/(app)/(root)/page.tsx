@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { tags } from '@/config/blog';
+import { tags } from '@/lib/blog';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { cn, formatDate } from '@/lib/utils';
 

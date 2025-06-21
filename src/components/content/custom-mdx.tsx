@@ -20,7 +20,6 @@ const rehypePrettyCodeOptions = {
     light: 'github-light-default',
   },
   transformers,
-  // keepBackground: true,
   defaultLang: 'plaintext',
   bypassInlineCode: true,
 };
