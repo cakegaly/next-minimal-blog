@@ -1,14 +1,17 @@
-import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
+import { author, tags } from '@/config/blog';
 import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';
 
-import { Badge } from '@/components/shadcn-ui/badge';
-import { Button } from '@/components/shadcn-ui/button';
+import { AspectRatio } from '@/components/shadcn-ui/aspect-ratio';
+import { ArticleShareButtons } from '@/components/content/article-share-buttons';
+import { Author } from '@/components/content/author';
 import { CustomMDX } from '@/components/content/custom-mdx';
-import { Icons } from '@/components/icons';
+import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { LinkBadge } from '@/components/shared/link-badge';
 
 export const revalidate = false;
 export const dynamic = 'force-static';
@@ -67,60 +70,106 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const breadcrumbItems = [
+    ...(post.metadata.tags && post.metadata.tags.length > 0
+      ? [
+          {
+            link: `/tag/${post.metadata.tags[0]}`,
+            label: tags[post.metadata.tags[0]].name,
+          },
+        ]
+      : []),
+    {
+      link: '',
+      label: post.metadata.title,
+    },
+  ];
+  const thumbnailUrl = post.metadata.thumbnail;
+
   return (
-    <>
-      <div className="container max-w-screen-md py-6 md:py-12">
-        <article>
-          {/* Metadata (Date & Tags) */}
-          <div className="text-muted-foreground mb-6 flex flex-wrap items-center justify-between text-sm">
-            {post.metadata.date && (
-              <div className="inline-flex items-center gap-1">
-                <Icons.calendar className="size-4" />
-                <time dateTime={post.metadata.date}>
-                  {formatDate(post.metadata.date)}
-                </time>
-              </div>
-            )}
-
-            {post.metadata.tags && post.metadata.tags.length > 0 && (
-              <div className="inline-flex flex-wrap gap-2">
-                {post.metadata.tags.map((tag) => (
-                  <Link key={tag} href={`/tag/${tag}`}>
-                    <Badge variant="secondary" className="px-2 py-0.5 text-xs">
-                      {tag}
-                    </Badge>
-                  </Link>
-                ))}
-              </div>
-            )}
+    <div className="flex flex-1 flex-col">
+      <div className="container-wrapper">
+        <div className="container">
+          <div className="hidden py-4 lg:block">
+            <Breadcrumb items={breadcrumbItems} />
           </div>
-
-          {/* Title */}
-          <h1 className="text-2xl leading-snug font-bold tracking-normal">
-            {post.metadata.title}
-          </h1>
-
-          {/* Description */}
-          {post.metadata.description && (
-            <p className="text-foreground/80 mt-4">
-              {post.metadata.description}
-            </p>
+        </div>
+        <div className="pt-4 lg:hidden">
+          {thumbnailUrl && (
+            <AspectRatio ratio={39 / 20} className="bg-muted">
+              <Image
+                src={thumbnailUrl}
+                alt={post.metadata.title}
+                fill
+                className="size-full object-cover"
+                priority={true}
+                sizes="(max-width: 768px) 100vw, 768px"
+              />
+            </AspectRatio>
           )}
-
-          {/* Article Content */}
-          <CustomMDX source={post.rawContent} />
-
-          {/* Footer */}
-          <footer className="mt-10 border-t pt-8">
-            <Button variant="ghost" asChild className="h-9 px-2">
-              <Link href="/" className="group inline-flex items-center">
-                <Icons.arrowLeft className="mr-2 size-4 transition-transform group-hover:-translate-x-1" />
-                Back to home
-              </Link>
-            </Button>
-          </footer>
-        </article>
+        </div>
       </div>
-    </>
+      <div className="container-wrapper py-8">
+        <div className="container flex max-w-screen-md flex-col gap-8">
+          <section className="flex-1">
+            <article className="relative">
+              <header className="mb-10 space-y-2 md:space-y-6">
+                {/* Date & Time */}
+                <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-[11px] md:text-xs">
+                  {post.metadata.date && (
+                    <div className="inline-flex items-center gap-1">
+                      <time dateTime={post.metadata.date}>
+                        {`${formatDate(post.metadata.date)}`}
+                      </time>
+                    </div>
+                  )}
+                  <div className="hidden md:flex md:gap-2">
+                    {post.metadata.tags?.map((slug) => (
+                      <LinkBadge
+                        key={slug}
+                        link={`/tag/${slug}`}
+                        label={tags[slug].name}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h1 className="text-lg leading-normal font-bold tracking-tight md:text-2xl md:leading-tight md:font-normal">
+                  {post.metadata.title}
+                </h1>
+
+                <div className="py-4 lg:hidden">
+                  <Author
+                    name={author.name}
+                    role="Site Owner"
+                    imageUrl={author.image}
+                    variant="mini"
+                  />
+                </div>
+              </header>
+
+              {/* Article Content */}
+              <CustomMDX source={post.rawContent} />
+
+              {/* Share Buttons */}
+              <div className="py-4">
+                <ArticleShareButtons
+                  url={absoluteUrl(`/blog/${slug}`)}
+                  title={post.metadata.title}
+                  description={post.metadata.description}
+                  image={thumbnailUrl}
+                />
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+      <div className="container-wrapper">
+        <div className="container py-6">
+          <Breadcrumb items={breadcrumbItems} />
+        </div>
+      </div>
+    </div>
   );
 }
