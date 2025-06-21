@@ -1,15 +1,16 @@
-import '@/styles/mdx.css';
-
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { CustomMDX } from '@/components/content/custom-mdx';
-import { Icons } from '@/components/icons';
-import { Badge } from '@/components/shadcn-ui/badge';
-import { Button } from '@/components/shadcn-ui/button';
 import { siteConfig } from '@/config/site';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';
+
+import { Badge } from '@/components/shadcn-ui/badge';
+import { Button } from '@/components/shadcn-ui/button';
+import { CustomMDX } from '@/components/content/custom-mdx';
+import { Icons } from '@/components/icons';
+
+import '@/styles/mdx.css';
 
 export const revalidate = false;
 
@@ -70,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <div className="container max-w-screen-md py-6 md:py-12">
       <article>
         {/* Metadata (Date & Tags) */}
-        <div className="mb-6 flex flex-wrap items-center justify-between text-sm text-muted-foreground">
+        <div className="text-muted-foreground mb-6 flex flex-wrap items-center justify-between text-sm">
           {post.metadata.date && (
             <div className="inline-flex items-center gap-1">
               <Icons.calendar className="size-4" />
@@ -94,13 +95,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl font-bold leading-snug tracking-normal">
+        <h1 className="text-2xl leading-snug font-bold tracking-normal">
           {post.metadata.title}
         </h1>
 
         {/* Description */}
         {post.metadata.description && (
-          <p className="mt-4 text-foreground/80">{post.metadata.description}</p>
+          <p className="text-foreground/80 mt-4">{post.metadata.description}</p>
         )}
 
         {/* Article Content */}
