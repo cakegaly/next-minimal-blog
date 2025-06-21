@@ -1,5 +1,33 @@
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  FileText,
+  Home,
+  Info,
+  Mail,
+  Moon,
+  Rss,
+  Sun,
+  XCircle,
+} from 'lucide-react';
+
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
-export { Icons } from './lucide-icons';
-export { SocialIcons } from './social-icons';
-export { TechIcons } from './tech-icons';
+export const Icons = {
+  alertTriangle: AlertTriangle,
+  arrowLeft: ArrowLeft,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  externalLink: ExternalLink,
+  fileText: FileText,
+  home: Home,
+  info: Info,
+  mail: Mail,
+  moon: Moon,
+  rss: Rss,
+  sun: Sun,
+  xCircle: XCircle,
+};
