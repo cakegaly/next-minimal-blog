@@ -1,6 +1,6 @@
 import { FileIcon } from 'lucide-react';
 
-type IconProps = React.HTMLAttributes<SVGElement>;
+import type { IconProps } from '@/components/icons';
 
 export const BrandIcons = {
   facebook: (props: IconProps) => (

@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 import { buttonVariants } from '@/components/shadcn-ui/button';
 import { Icons } from '@/components/icons';
-import { SocialIcons } from '@/components/icons/social-icons';
+import { BrandIcons } from '@/components/icons/brand-icons';
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -26,7 +26,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               aria-label="X(Twitter)"
               title="X(Twitter, @cakegaly)"
             >
-              <SocialIcons.twitter className="size-4" />
+              <BrandIcons.x className="size-4" />
             </Link>
           )}
           {siteConfig.email && (
@@ -50,7 +50,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               aria-label="GitHub"
               title="GitHub (/cakegaly)"
             >
-              <SocialIcons.github className="size-4" />
+              <BrandIcons.gitHub className="size-4" />
             </Link>
           )}
           <Link
