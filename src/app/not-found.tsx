@@ -14,19 +14,14 @@ export default function NotFound() {
         </h1>
 
         <div className="mt-4 space-y-2">
-          <h2 className="text-2xl font-semibold tracking-tight">
-            ページが見つかりません
-          </h2>
-          <p className="text-muted-foreground">
-            アドレスが変更されたか、ページが削除された可能性があります。
-          </p>
+          <h2 className="text-2xl font-semibold tracking-tight">Not Found</h2>
         </div>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Button variant="outline" asChild className="gap-2">
             <Link href="/">
               <Icons.home className="size-4" />
-              ホームに戻る
+              Home
             </Link>
           </Button>
           <Button
@@ -35,7 +30,7 @@ export default function NotFound() {
             className="gap-2"
           >
             <Icons.arrowLeft className="size-4" />
-            前のページに戻る
+            Back
           </Button>
         </div>
 
