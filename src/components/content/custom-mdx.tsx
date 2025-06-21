@@ -8,6 +8,7 @@ import { components } from '@/components/content/mdx-components';
 
 interface CustomMDXProps {
   source: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   additionalComponents?: Record<string, React.ComponentType<any>>;
 }
 

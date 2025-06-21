@@ -16,8 +16,8 @@ export const tags: Record<
   eslint: { name: 'ESLint', icon: 'eslint' },
   jamstack: { name: 'Jamstack', icon: 'jamstack' },
   nextjs: { name: 'Next.js', icon: 'nextjs' },
-  react: { name: 'react', icon: 'react' },
+  react: { name: 'React', icon: 'react' },
   typescript: { name: 'TypeScript', icon: 'typescript' },
   wordpress: { name: 'WordPress', icon: 'wordpress' },
-  vercel: { name: 'vercel', icon: 'vercel' },
+  vercel: { name: 'Vercel', icon: 'vercel' },
 };

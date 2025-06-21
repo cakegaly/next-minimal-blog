@@ -2,11 +2,22 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-import type { Frontmatter, MDXData } from '@/types/mdx';
-
 import type { TechIcons } from '@/components/icons';
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
+
+export type Frontmatter<T = {}> = {
+  title: string;
+  date: string;
+  description: string;
+} & T;
+
+export type MDXData<T = {}> = {
+  metadata: Frontmatter<T>;
+  slug: string;
+  content?: React.ReactNode;
+  rawContent: string;
+};
 
 export type BlogPost = MDXData<{
   thumbnail?: string;
