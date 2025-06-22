@@ -7,8 +7,6 @@ export const author = {
   twitter: 'cakegaly',
 };
 
-export const postsPerPage = 5;
-
 export const tags: Record<
   string,
   { name: string; icon: keyof typeof TechIcons }
