@@ -143,7 +143,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </header>
 
               {/* Article Content */}
-              <CustomMDX source={post.rawContent} />
+              <div className="mb-10">
+                <CustomMDX source={post.rawContent} />
+              </div>
 
               {/* Share Buttons */}
               <div className="py-4">

@@ -87,12 +87,14 @@ export function FacebookShareButton({
       onClick={handleShare}
       className={cn(
         'border-brand-facebook bg-brand-facebook hover:border-brand-facebook/80 hover:bg-brand-facebook/80',
+        'dark:border-brand-facebook dark:bg-brand-facebook dark:hover:border-brand-facebook/80 dark:hover:bg-brand-facebook/80',
         'text-primary-foreground hover:text-primary-foreground/80',
+        'dark:text-secondary-foreground dark:hover:text-secondary-foreground/80',
         className
       )}
     >
       <BrandIcons.facebook className="size-6" />
-      <span className="sr-only">Facebookでシェア</span>
+      <span className="sr-only">Facebook share</span>
     </Button>
   );
 }
@@ -118,12 +120,14 @@ export function XShareButton({
       onClick={handleShare}
       className={cn(
         'border-brand-x bg-brand-x hover:border-brand-x/80 hover:bg-brand-x/80',
+        'dark:border-brand-x dark:bg-brand-x dark:hover:border-brand-x/80 dark:hover:bg-brand-x/80',
         'text-primary-foreground hover:text-primary-foreground/80',
+        'dark:text-secondary-foreground dark:hover:text-secondary-foreground/80',
         className
       )}
     >
       <BrandIcons.x className="size-6" />
-      <span className="sr-only">Xに投稿する</span>
+      <span className="sr-only">X Post</span>
     </Button>
   );
 }
@@ -149,12 +153,14 @@ export function LineShareButton({
       onClick={handleShare}
       className={cn(
         'border-brand-line bg-brand-line hover:border-brand-line/80 hover:bg-brand-line/80',
+        'dark:border-brand-line dark:bg-brand-line dark:hover:border-brand-line/80 dark:hover:bg-brand-line/80',
         'text-primary-foreground hover:text-primary-foreground/80',
+        'dark:text-secondary-foreground dark:hover:text-secondary-foreground/80',
         className
       )}
     >
       <BrandIcons.line className="size-6" />
-      <span className="sr-only">LINEで送る</span>
+      <span className="sr-only">LINE Share</span>
     </Button>
   );
 }
@@ -180,12 +186,14 @@ export function PinterestShareButton({
       onClick={handleShare}
       className={cn(
         'border-brand-pinterest bg-brand-pinterest hover:border-brand-pinterest/80 hover:bg-brand-pinterest/80',
+        'dark:border-brand-pinterest dark:bg-brand-pinterest dark:hover:border-brand-pinterest/80 dark:hover:bg-brand-pinterest/80',
         'text-primary-foreground hover:text-primary-foreground/80',
+        'dark:text-secondary-foreground dark:hover:text-secondary-foreground/80',
         className
       )}
     >
       <BrandIcons.pinterest className="size-6" />
-      <span className="sr-only">Pinterestに保存する</span>
+      <span className="sr-only">Pinterest save</span>
     </Button>
   );
 }
