@@ -3,7 +3,7 @@ import { TechIcons } from '@/components/icons/tech-icons';
 export const author = {
   slug: 'cakegaly',
   name: 'cakegaly',
-  image: 'https://github.com/cakegaly.png',
+  image: '/images/avatars/cakegaly.webp',
   twitter: 'cakegaly',
 };
 

@@ -132,12 +132,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   {post.metadata.title}
                 </h1>
 
-                <div className="py-4 lg:hidden">
+                <div className="py-4">
                   <Author
                     name={author.name}
-                    role="Site Owner"
+                    twitterId={author.twitter}
                     imageUrl={author.image}
-                    variant="mini"
                   />
                 </div>
               </header>
