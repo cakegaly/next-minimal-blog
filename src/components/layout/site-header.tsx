@@ -39,6 +39,7 @@ export function SiteHeader() {
                 rel="noreferrer"
               >
                 <BrandIcons.gitHub />
+                <span className="sr-only">GitHub Repository</span>
               </Link>
             </Button>
             <Separator orientation="vertical" />
