@@ -48,7 +48,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
-              title="GitHub (/cakegaly)"
+              title="GitHub (next-minimal-blog github repository)"
             >
               <BrandIcons.gitHub className="size-4" />
             </Link>
