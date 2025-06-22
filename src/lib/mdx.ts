@@ -1,11 +1,27 @@
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
+import matter from 'gray-matter';
 
-import type { TechIcons } from '@/components/icons';
-import type { Frontmatter, MDXData } from '@/types/mdx';
+import { paginateItems, PaginationResult } from '@/lib/pagination';
+
+import { TechIcons } from '@/components/icons/tech-icons';
 
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
+
+export const DEFAULT_BLOG_LIST_LIMIT = 6;
+
+export type Frontmatter<T = {}> = {
+  title: string;
+  date: string;
+  description: string;
+} & T;
+
+export type MDXData<T = {}> = {
+  metadata: Frontmatter<T>;
+  slug: string;
+  content?: React.ReactNode;
+  rawContent: string;
+};
 
 export type BlogPost = MDXData<{
   thumbnail?: string;
@@ -19,6 +35,14 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     (a, b) =>
       new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
   );
+}
+
+export async function getBlogPosts(
+  page = 1,
+  pageSize = DEFAULT_BLOG_LIST_LIMIT
+): Promise<PaginationResult<BlogPost>> {
+  const posts = await getAllBlogPosts();
+  return paginateItems(posts, page, pageSize);
 }
 
 export async function getBlogPostsByTagSlug(

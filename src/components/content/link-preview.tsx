@@ -1,13 +1,14 @@
+import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
-
 import { getOGData } from '@/actions/fetch-og-metadata';
-import { Icons } from '@/components/icons';
-import { ImageWithFallback } from '@/components/shared/image-with-fallback';
-import { siteConfig } from '@/config/site';
+
+import { siteConfig } from '@/lib/config';
 import { getBlogPostBySlug } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
+
+import { Icons } from '@/components/icons';
+import { ImageWithFallback } from '@/components/shared/image-with-fallback';
 
 interface LinkCardProps {
   url: string;
@@ -58,10 +59,10 @@ export function LinkCard({
     <>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-center gap-1">
-          <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
             {isExternal ? (
               <>
-                <div className="relative size-4 overflow-hidden rounded-full bg-muted">
+                <div className="bg-muted relative size-4 overflow-hidden rounded-full">
                   {hostname && (
                     <Image
                       src={`https://www.google.com/s2/favicons?domain=${hostname}&sz=64`}
@@ -73,12 +74,12 @@ export function LinkCard({
                   )}
                 </div>
                 <span>{hostname.replace(/^www\./, '')}</span>
-                <Icons.externalLink className="size-3 text-muted-foreground/70" />
+                <Icons.externalLink className="text-muted-foreground/70 size-3" />
               </>
             ) : (
               <span className="flex items-center gap-1.5">
-                <div className="size-4 rounded-full bg-primary/10">
-                  <span className="flex h-full w-full items-center justify-center text-[10px] font-bold text-primary">
+                <div className="bg-primary/10 size-4 rounded-full">
+                  <span className="text-primary flex h-full w-full items-center justify-center text-[10px] font-bold">
                     B
                   </span>
                 </div>
@@ -89,15 +90,15 @@ export function LinkCard({
         </div>
 
         <div className="flex-1">
-          <h3 className="font-semibold leading-tight text-foreground transition-colors group-hover:text-accent">
+          <h3 className="text-foreground group-hover:text-accent leading-tight font-semibold transition-colors">
             {error ? 'Page Not Found' : title || 'Untitled'}{' '}
           </h3>
           {error ? (
-            <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1.5 line-clamp-2 text-sm">
               This page may have been moved or deleted.
             </p>
           ) : description ? (
-            <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+            <p className="text-muted-foreground mt-1.5 line-clamp-2 text-sm">
               {description}
             </p>
           ) : null}
@@ -114,9 +115,9 @@ export function LinkCard({
           </div>
         </div>
       ) : (
-        <div className="hidden w-[148px] shrink-0 bg-muted/30 sm:block">
+        <div className="bg-muted/30 hidden w-[148px] shrink-0 sm:block">
           <div className="flex h-full w-full items-center justify-center">
-            <span className="text-4xl text-muted-foreground/20">
+            <span className="text-muted-foreground/20 text-4xl">
               {isExternal ? '🔗' : '📝'}
             </span>
           </div>
@@ -209,7 +210,7 @@ export function LinkPreview({ url, className }: LinkPreviewProps) {
       fallback={
         <div
           className={cn(
-            'my-4 h-[124px] animate-pulse rounded-lg border bg-muted/50',
+            'bg-muted/50 my-4 h-[124px] animate-pulse rounded-lg border',
             className
           )}
         />

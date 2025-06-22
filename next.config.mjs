@@ -1,19 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  devIndicators: false,
   typescript: {
     tsconfigPath: 'tsconfig.build.json',
   },
   images: {
-    loader: 'custom',
-    loaderFile: './src/lib/image-loader.ts',
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.microcms-assets.io',
+        hostname: 'www.google.com',
       },
     ],
   },
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
 };
 
 export default nextConfig;

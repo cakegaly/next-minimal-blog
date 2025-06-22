@@ -1,10 +1,10 @@
 'use client';
 
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { useTheme } from 'next-themes';
 
-import { Icons } from '@/components/icons';
 import { Switch } from '@/components/shadcn-ui/switch';
+import { Icons } from '@/components/icons';
 
 export function ModeSwitch() {
   const { resolvedTheme, setTheme } = useTheme();
