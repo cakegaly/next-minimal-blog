@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { tags } from '@/lib/blog';
-import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { cn, formatDate } from '@/lib/utils';
 
 import { Button, buttonVariants } from '@/components/shadcn-ui/button';
 import { Icons } from '@/components/icons';
+import { AboutCta } from '@/components/shared/about-cta';
 import { LinkBadge } from '@/components/shared/link-badge';
 import { LinkCard } from '@/components/shared/link-card';
 import { PartialViewCarousel } from '@/components/shared/partial-view-carousel';
@@ -36,24 +36,7 @@ export default async function IndexPage() {
       </section>
       <div className="container-wrapper">
         <div className="container py-6">
-          <div className="bg-surface text-surface-foreground flex flex-col gap-2 rounded-lg p-6">
-            <div className="leading-tight font-semibold">
-              Welcome to the demo of next-minimal-blog!
-            </div>
-            <div className="text-muted-foreground text-sm">
-              It's a minimal Next.js blog template, and the source code is
-              available on{' '}
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
-                className="font-medium underline underline-offset-4"
-              >
-                GitHub
-              </a>
-              . Feel free to check it out and build your own!
-            </div>
-          </div>
+          <AboutCta />
         </div>
       </div>
       <div className="container-wrapper">

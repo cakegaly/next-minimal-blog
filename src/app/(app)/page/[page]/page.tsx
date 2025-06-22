@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getBlogPosts } from '@/lib/mdx';
 import { formatDate } from '@/lib/utils';
 
+import { AboutCta } from '@/components/shared/about-cta';
 import { LinkCard } from '@/components/shared/link-card';
 import { Pagination } from '@/components/shared/pagination';
 
@@ -44,6 +45,11 @@ export default async function BlogListPage({ params }: BlogListPageProps) {
 
   return (
     <div className="flex flex-1 flex-col">
+      <div className="container-wrapper">
+        <div className="container py-6">
+          <AboutCta />
+        </div>
+      </div>
       <div className="container-wrapper">
         <div className="container flex flex-col gap-1">
           <section className="container border-b py-6">
