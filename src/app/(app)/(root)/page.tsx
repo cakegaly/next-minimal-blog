@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { tags } from '@/lib/blog';
+import { siteConfig } from '@/lib/config';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { cn, formatDate } from '@/lib/utils';
 
@@ -33,6 +34,28 @@ export default async function IndexPage() {
         <h2 className="sr-only">Hero Carousel Items</h2>
         <HeroCarousel />
       </section>
+      <div className="container-wrapper">
+        <div className="container py-6">
+          <div className="bg-surface text-surface-foreground flex flex-col gap-2 rounded-lg p-6">
+            <div className="leading-tight font-semibold">
+              Welcome to the demo of next-minimal-blog!
+            </div>
+            <div className="text-muted-foreground text-sm">
+              It's a minimal Next.js blog template, and the source code is
+              available on{' '}
+              <a
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium underline underline-offset-4"
+              >
+                GitHub
+              </a>
+              . Feel free to check it out and build your own!
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container-wrapper">
         <section className="container border-b py-6">
           <div className="flex flex-col gap-1 pb-6">
