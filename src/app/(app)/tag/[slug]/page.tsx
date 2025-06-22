@@ -88,7 +88,7 @@ export default async function TagPage({ params }: TagPageProps) {
                 {`Posts with "${slug}" Tag`}
               </h2>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
                 <LinkCard
                   key={post.slug}
