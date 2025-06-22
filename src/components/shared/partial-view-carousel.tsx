@@ -152,7 +152,7 @@ export function PartialViewCarousel({
           onClick={scrollPrev}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
           aria-label="Slide to Prev Item"
         >
           <Icons.chevronLeft className="size-6" />
@@ -161,7 +161,7 @@ export function PartialViewCarousel({
           onClick={toggleAutoplay}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
           aria-label={isPlaying ? 'Pause Slide' : 'Play Slide'}
         >
           {isPlaying ? (
@@ -174,7 +174,7 @@ export function PartialViewCarousel({
           onClick={scrollNext}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
           aria-label="Slide to Next Item"
         >
           <Icons.chevronRight className="size-6" />
