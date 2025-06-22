@@ -94,7 +94,7 @@ export function FacebookShareButton({
       )}
     >
       <BrandIcons.facebook className="size-6" />
-      <span className="sr-only">Facebookでシェア</span>
+      <span className="sr-only">Facebook share</span>
     </Button>
   );
 }
@@ -127,7 +127,7 @@ export function XShareButton({
       )}
     >
       <BrandIcons.x className="size-6" />
-      <span className="sr-only">Xに投稿する</span>
+      <span className="sr-only">X Post</span>
     </Button>
   );
 }
@@ -160,7 +160,7 @@ export function LineShareButton({
       )}
     >
       <BrandIcons.line className="size-6" />
-      <span className="sr-only">LINEで送る</span>
+      <span className="sr-only">LINE Share</span>
     </Button>
   );
 }
@@ -193,7 +193,7 @@ export function PinterestShareButton({
       )}
     >
       <BrandIcons.pinterest className="size-6" />
-      <span className="sr-only">Pinterestに保存する</span>
+      <span className="sr-only">Pinterest save</span>
     </Button>
   );
 }
