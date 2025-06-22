@@ -125,7 +125,7 @@ export default async function IndexPage() {
                 href="/page/1"
                 className={cn(
                   buttonVariants({ variant: 'link' }),
-                  'ml-auto block px-0 text-end text-xs font-normal'
+                  'mt-4 ml-auto block px-0 text-end text-xs font-normal'
                 )}
               >
                 {'See more posts'}
