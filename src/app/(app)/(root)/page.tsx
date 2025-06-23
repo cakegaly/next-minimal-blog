@@ -76,7 +76,7 @@ export default async function IndexPage() {
             <div className="flex flex-col gap-1 pb-6">
               <h2 className="text-2xl font-medium tracking-tight">List View</h2>
             </div>
-            <div className="space-y-4">
+            <div className="flex flex-col gap-2">
               {allPosts.map((post) => (
                 <LinkCard
                   key={post.slug}
@@ -106,17 +106,17 @@ export default async function IndexPage() {
             <section className="pb-6">
               <div className="flex flex-col gap-1 pb-6">
                 <h2 className="text-2xl font-medium tracking-tight">
-                  Small List View
+                  Compact List View
                 </h2>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 {allPosts.slice(0, 5).map((post) => (
                   <LinkCard
                     key={post.slug}
                     title={post.metadata.title}
                     imageUrl={post.metadata.thumbnail || '/og.png'}
                     link={`/blog/${post.slug}`}
-                    variant="mini"
+                    variant="compact"
                     badgeText={formatDate(post.metadata.date)}
                   />
                 ))}
