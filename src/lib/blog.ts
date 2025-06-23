@@ -1,21 +1,18 @@
-import { TechIcons } from '@/components/icons/tech-icons';
+import { BrandIcons } from '@/components/icons/brand-icons';
 
 export const author = {
   slug: 'cakegaly',
   name: 'cakegaly',
-  image: 'https://github.com/cakegaly.png',
+  image: '/images/avatars/cakegaly.webp',
   twitter: 'cakegaly',
 };
 
 export const tags: Record<
   string,
-  { name: string; icon: keyof typeof TechIcons }
+  { name: string; icon: keyof typeof BrandIcons }
 > = {
-  eslint: { name: 'ESLint', icon: 'eslint' },
-  jamstack: { name: 'Jamstack', icon: 'jamstack' },
+  mdx: { name: 'MDX', icon: 'mdx' },
   nextjs: { name: 'Next.js', icon: 'nextjs' },
-  react: { name: 'React', icon: 'react' },
-  typescript: { name: 'TypeScript', icon: 'typescript' },
-  wordpress: { name: 'WordPress', icon: 'wordpress' },
-  vercel: { name: 'Vercel', icon: 'vercel' },
+  tailwind: { name: 'Tailwind CSS', icon: 'tailwind' },
+  typescript: { name: 'TypeScript', icon: 'ts' },
 };

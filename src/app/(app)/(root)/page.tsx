@@ -44,7 +44,7 @@ export default async function IndexPage() {
           <div className="flex flex-col gap-1 pb-6">
             <h2 className="text-2xl font-medium tracking-tight">Grid View</h2>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {allPosts.slice(0, 6).map((post) => (
               <LinkCard
                 key={post.slug}
@@ -76,7 +76,7 @@ export default async function IndexPage() {
             <div className="flex flex-col gap-1 pb-6">
               <h2 className="text-2xl font-medium tracking-tight">List View</h2>
             </div>
-            <div className="space-y-4">
+            <div className="flex flex-col gap-2">
               {allPosts.map((post) => (
                 <LinkCard
                   key={post.slug}
@@ -106,17 +106,17 @@ export default async function IndexPage() {
             <section className="pb-6">
               <div className="flex flex-col gap-1 pb-6">
                 <h2 className="text-2xl font-medium tracking-tight">
-                  Small List View
+                  Compact List View
                 </h2>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 {allPosts.slice(0, 5).map((post) => (
                   <LinkCard
                     key={post.slug}
                     title={post.metadata.title}
                     imageUrl={post.metadata.thumbnail || '/og.png'}
                     link={`/blog/${post.slug}`}
-                    variant="mini"
+                    variant="compact"
                     badgeText={formatDate(post.metadata.date)}
                   />
                 ))}
@@ -125,7 +125,7 @@ export default async function IndexPage() {
                 href="/page/1"
                 className={cn(
                   buttonVariants({ variant: 'link' }),
-                  'ml-auto block px-0 text-end text-xs font-normal'
+                  'mt-4 ml-auto block px-0 text-end text-xs font-normal'
                 )}
               >
                 {'See more posts'}
@@ -134,9 +134,7 @@ export default async function IndexPage() {
 
             <section className="pb-6">
               <div className="flex flex-col gap-1 pb-6">
-                <h2 className="text-2xl font-medium tracking-tight">
-                  Keywords
-                </h2>
+                <h2 className="text-2xl font-medium tracking-tight">Tags</h2>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {Object.keys(tags).map((slug) => (

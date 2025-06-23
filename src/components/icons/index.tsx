@@ -8,9 +8,7 @@ import {
   Home,
   Info,
   Mail,
-  Moon,
   Rss,
-  Sun,
   XCircle,
 } from 'lucide-react';
 
@@ -26,8 +24,6 @@ export const Icons = {
   home: Home,
   info: Info,
   mail: Mail,
-  moon: Moon,
   rss: Rss,
-  sun: Sun,
   xCircle: XCircle,
 };

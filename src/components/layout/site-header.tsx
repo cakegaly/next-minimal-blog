@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { siteConfig } from '@/lib/config';
@@ -6,6 +5,7 @@ import { siteConfig } from '@/lib/config';
 import { Button } from '@/components/shadcn-ui/button';
 import { Separator } from '@/components/shadcn-ui/separator';
 import { BrandIcons } from '@/components/icons/brand-icons';
+import { SiteLogo } from '@/components/icons/site-logo';
 import { ModeSwitcher } from '@/components/layout/mode-switcher';
 
 export function SiteHeader() {
@@ -15,14 +15,7 @@ export function SiteHeader() {
         <div className="container flex h-12 items-center gap-2 border-b **:data-[slot=separator]:!h-4 md:h-16">
           <Button asChild variant="ghost" size="icon" className="flex size-10">
             <Link href="/">
-              <Image
-                src="/images/avatars/cakegaly.webp"
-                alt="cakegaly icon"
-                width={32}
-                height={32}
-                className="ring-border rounded-full ring-1"
-                priority={true}
-              />
+              <SiteLogo className="size-8" />
               <span className="sr-only">{siteConfig.name}</span>
             </Link>
           </Button>
@@ -39,6 +32,7 @@ export function SiteHeader() {
                 rel="noreferrer"
               >
                 <BrandIcons.gitHub />
+                <span className="sr-only">GitHub Repository</span>
               </Link>
             </Button>
             <Separator orientation="vertical" />

@@ -127,7 +127,7 @@ export function PartialViewCarousel({
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <Image
                         src={item.imageUrl || '/placeholder.svg'}
-                        alt={item.title}
+                        alt={`${item.title} thumbnail image`}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
                         sizes="(max-width: 640px) 80vw, (max-width: 768px) 70vw, (max-width: 1024px) 50vw, (max-width: 1280px) 40vw, 30vw"
@@ -152,8 +152,8 @@ export function PartialViewCarousel({
           onClick={scrollPrev}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
-          aria-label="前の記事にスライドする"
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          aria-label="Slide to Prev Item"
         >
           <Icons.chevronLeft className="size-6" />
         </Button>
@@ -161,8 +161,8 @@ export function PartialViewCarousel({
           onClick={toggleAutoplay}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
-          aria-label={isPlaying ? 'スライドを停止する' : 'スライドを再生する'}
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          aria-label={isPlaying ? 'Pause Slide' : 'Play Slide'}
         >
           {isPlaying ? (
             <Pause className="size-6" />
@@ -174,8 +174,8 @@ export function PartialViewCarousel({
           onClick={scrollNext}
           variant="outline"
           size="icon"
-          className="size-12 rounded-full shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
-          aria-label="次の記事にスライドする"
+          className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          aria-label="Slide to Next Item"
         >
           <Icons.chevronRight className="size-6" />
         </Button>
