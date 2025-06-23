@@ -105,10 +105,10 @@
   --code-number: oklch(0.72 0 0);
   --selection: oklch(0.922 0 0);
   --selection-foreground: oklch(0.205 0 0);
-  --brand-facebook: var(--brand-facebook);
-  --brand-line: var(--brand-line);
-  --brand-pinterest: var(--brand-pinterest);
-  --brand-x: var(--brand-x);
+  --brand-facebook: oklch(0.564 0.24 261.2);
+  --brand-line: oklch(0.708 0.241 142.5);
+  --brand-pinterest: oklch(0.505 0.202 25.8);
+  --brand-x: oklch(0 0 0);
 }
 
 @layer base {

@@ -4,6 +4,7 @@ import { getBlogPostsByTagSlug } from '@/lib/mdx';
 import { absoluteUrl, formatDate } from '@/lib/utils';
 
 import { Breadcrumb } from '@/components/layout/breadcrumb';
+import { AboutCta } from '@/components/shared/about-cta';
 import { LinkCard } from '@/components/shared/link-card';
 
 export const dynamic = 'force-static';
@@ -72,6 +73,11 @@ export default async function TagPage({ params }: TagPageProps) {
           <div className="hidden py-4 lg:block">
             <Breadcrumb items={breadcrumbItems} />
           </div>
+        </div>
+      </div>
+      <div className="container-wrapper">
+        <div className="container py-6">
+          <AboutCta />
         </div>
       </div>
       <div className="container-wrapper">
