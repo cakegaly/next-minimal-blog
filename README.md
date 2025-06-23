@@ -2,6 +2,8 @@
 
 This is a lightweight, minimalistic blog template built with Next.js 15, MDX, Tailwind CSS, and shadcn/ui.
 
+![Demo ScreenShot](/public/images/demo/screenshot.png)
+
 ## Tech Stack
 
 - Framework - [Next.js](https://nextjs.org/15) (v15)
