@@ -134,9 +134,7 @@ export default async function IndexPage() {
 
             <section className="pb-6">
               <div className="flex flex-col gap-1 pb-6">
-                <h2 className="text-2xl font-medium tracking-tight">
-                  Keywords
-                </h2>
+                <h2 className="text-2xl font-medium tracking-tight">Tags</h2>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {Object.keys(tags).map((slug) => (
