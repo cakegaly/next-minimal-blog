@@ -4,8 +4,6 @@ import matter from 'gray-matter';
 
 import { paginateItems, PaginationResult } from '@/lib/pagination';
 
-import { TechIcons } from '@/components/icons/tech-icons';
-
 const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
 
 export const DEFAULT_BLOG_LIST_LIMIT = 6;
@@ -26,7 +24,6 @@ export type MDXData<T = {}> = {
 export type BlogPost = MDXData<{
   thumbnail?: string;
   tags?: string[];
-  icon?: keyof typeof TechIcons;
 }>;
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
