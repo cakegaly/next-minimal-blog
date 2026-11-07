@@ -1,11 +1,11 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getOGData } from '@/actions/fetch-og-metadata';
 import { ExternalLinkIcon } from 'lucide-react';
 
 import { siteConfig } from '@/lib/config';
 import { getBlogPostBySlug } from '@/lib/mdx';
+import { getOGData } from '@/lib/og';
 import { cn } from '@/lib/utils';
 import { ImageWithFallback } from '@/components/shared/image-with-fallback';
 
@@ -58,10 +58,10 @@ export function LinkCard({
     <>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-center gap-1">
-          <div className="text-muted-foreground flex items-center gap-1.5 text-xs font-medium">
+          <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             {isExternal ? (
               <>
-                <div className="bg-muted relative size-4 overflow-hidden rounded-full">
+                <div className="relative size-4 overflow-hidden rounded-full bg-muted">
                   {hostname && (
                     <Image
                       src={`https://www.google.com/s2/favicons?domain=${hostname}&sz=64`}
@@ -73,12 +73,12 @@ export function LinkCard({
                   )}
                 </div>
                 <span>{hostname.replace(/^www\./, '')}</span>
-                <ExternalLinkIcon className="text-muted-foreground/70 size-3" />
+                <ExternalLinkIcon className="size-3 text-muted-foreground/70" />
               </>
             ) : (
               <span className="flex items-center gap-1.5">
-                <div className="bg-primary/10 size-4 rounded-full">
-                  <span className="text-primary flex h-full w-full items-center justify-center text-[10px] font-bold">
+                <div className="size-4 rounded-full bg-primary/10">
+                  <span className="flex h-full w-full items-center justify-center text-[10px] font-bold text-primary">
                     B
                   </span>
                 </div>
@@ -89,15 +89,15 @@ export function LinkCard({
         </div>
 
         <div className="flex-1">
-          <h3 className="text-foreground group-hover:text-accent leading-tight font-semibold transition-colors">
+          <h3 className="leading-tight font-semibold text-foreground transition-colors group-hover:text-accent">
             {error ? 'Page Not Found' : title || 'Untitled'}{' '}
           </h3>
           {error ? (
-            <p className="text-muted-foreground mt-1.5 line-clamp-2 text-sm">
+            <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
               This page may have been moved or deleted.
             </p>
           ) : description ? (
-            <p className="text-muted-foreground mt-1.5 line-clamp-2 text-sm">
+            <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
               {description}
             </p>
           ) : null}
@@ -114,9 +114,9 @@ export function LinkCard({
           </div>
         </div>
       ) : (
-        <div className="bg-muted/30 hidden w-[148px] shrink-0 sm:block">
+        <div className="hidden w-[148px] shrink-0 bg-muted/30 sm:block">
           <div className="flex h-full w-full items-center justify-center">
-            <span className="text-muted-foreground/20 text-4xl">
+            <span className="text-4xl text-muted-foreground/20">
               {isExternal ? '🔗' : '📝'}
             </span>
           </div>
@@ -179,26 +179,22 @@ async function ExternalLinkCard({
   url: string;
   className?: string;
 }) {
-  try {
-    const ogData = await getOGData(url);
+  // getOGData never throws; it returns `{ url }` on failure.
+  const ogData = await getOGData(url);
 
-    if (!ogData.title) {
-      return <LinkCard url={url} error={true} className={className} />;
-    }
-
-    return (
-      <LinkCard
-        url={url}
-        title={ogData.title}
-        description={ogData.description}
-        image={ogData.image}
-        className={className}
-      />
-    );
-  } catch (error) {
-    console.error(`Error fetching ${url}:`, error);
+  if (!ogData.title) {
     return <LinkCard url={url} error={true} className={className} />;
   }
+
+  return (
+    <LinkCard
+      url={url}
+      title={ogData.title}
+      description={ogData.description}
+      image={ogData.image}
+      className={className}
+    />
+  );
 }
 
 export function LinkPreview({ url, className }: LinkPreviewProps) {
@@ -209,7 +205,7 @@ export function LinkPreview({ url, className }: LinkPreviewProps) {
       fallback={
         <div
           className={cn(
-            'bg-muted/50 my-4 h-[124px] animate-pulse rounded-lg border',
+            'my-4 h-[124px] animate-pulse rounded-lg border bg-muted/50',
             className
           )}
         />

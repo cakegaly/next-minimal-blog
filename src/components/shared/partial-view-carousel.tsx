@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
@@ -35,94 +35,55 @@ export function PartialViewCarousel({
   items,
   className,
 }: PartialViewCarouselProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  const [viewportWidth, setViewportWidth] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [api, setApi] = useState<CarouselApi>();
-  const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
-
-  useEffect(() => {
-    setIsMounted(true);
-    const handleResize = () => {
-      setViewportWidth(window.innerWidth);
-    };
-
-    // Set initial viewport width
-    setViewportWidth(window.innerWidth);
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Clean up
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // Lazily create the plugin once (useState instead of useRef so it can be
+  // read during render without violating the React Compiler rules).
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
 
   useEffect(() => {
     if (!api) return;
 
-    const onAutoplay = () => {
-      setIsPlaying(!plugin.current.isPlaying());
-    };
+    const onPlay = () => setIsPlaying(true);
+    const onStop = () => setIsPlaying(false);
 
-    api.on('autoplay:play', onAutoplay);
-    api.on('autoplay:stop', onAutoplay);
+    api.on('autoplay:play', onPlay);
+    api.on('autoplay:stop', onStop);
 
     return () => {
-      api.off('autoplay:play', onAutoplay);
-      api.off('autoplay:stop', onAutoplay);
+      api.off('autoplay:play', onPlay);
+      api.off('autoplay:stop', onStop);
     };
   }, [api]);
 
-  // Calculate optimal item size based on viewport width
-  const getItemSize = () => {
-    if (viewportWidth < 640) return 'basis-[80%]';
-    if (viewportWidth < 768) return 'basis-[70%]';
-    if (viewportWidth < 1024) return 'basis-[50%]';
-    if (viewportWidth < 1280) return 'basis-[40%]';
-    return 'basis-[30%]';
-  };
-
   const toggleAutoplay = () => {
-    if (plugin.current.isPlaying()) {
-      plugin.current.stop();
+    if (autoplay.isPlaying()) {
+      autoplay.stop();
     } else {
-      plugin.current.play();
+      autoplay.play();
     }
   };
-
-  const scrollPrev = () => {
-    api?.scrollPrev();
-  };
-
-  const scrollNext = () => {
-    api?.scrollNext();
-  };
-
-  if (!isMounted) {
-    return (
-      // TODO: set pc size position for preventing layout shift
-      <div className="bg-muted/20 h-[300px] w-full animate-pulse rounded-lg" />
-    );
-  }
 
   return (
     <div className={cn('w-full overflow-hidden', className)}>
       <Carousel
         setApi={setApi}
-        plugins={[plugin.current]}
+        plugins={[autoplay]}
         opts={{
           align: 'center',
           loop: true,
         }}
         className="w-full"
-        onMouseEnter={plugin.current.stop}
-        onMouseLeave={plugin.current.reset}
+        onMouseEnter={autoplay.stop}
+        onMouseLeave={autoplay.reset}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {items.map((item, index) => (
             <UICarouselItem
               key={index}
-              className={cn('pl-2 md:pl-4', getItemSize())}
+              className="basis-[80%] pl-2 sm:basis-[70%] md:basis-[50%] md:pl-4 lg:basis-[40%] xl:basis-[30%]"
             >
               <Link href={item.href}>
                 <div className="flex h-full flex-col gap-6 overflow-hidden rounded-xl border">
@@ -152,7 +113,7 @@ export function PartialViewCarousel({
       {/* Custom Control Buttons */}
       <div className="my-4 flex items-center justify-center gap-2">
         <Button
-          onClick={scrollPrev}
+          onClick={() => api?.scrollPrev()}
           variant="outline"
           size="icon"
           className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
@@ -174,7 +135,7 @@ export function PartialViewCarousel({
           )}
         </Button>
         <Button
-          onClick={scrollNext}
+          onClick={() => api?.scrollNext()}
           variant="outline"
           size="icon"
           className="size-12 rounded-2xl shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"

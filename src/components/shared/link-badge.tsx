@@ -14,9 +14,9 @@ export function LinkBadge({ label, link, className }: LinkBadgeProps) {
     <Badge
       className={cn('rounded-full font-normal', className)}
       variant="outline"
-      asChild
+      render={<Link href={link} />}
     >
-      <Link href={link}>{label}</Link>
+      {label}
     </Badge>
   );
 }

@@ -20,7 +20,7 @@ export function ArticleShareButtons({
   className = '',
 }: ArticleShareButtonsProps) {
   return (
-    <div className={`bg-muted rounded-xl p-4 md:p-8 ${className}`}>
+    <div className={`rounded-xl bg-muted p-4 md:p-8 ${className}`}>
       <div className="flex flex-col gap-4">
         <SnsShareButtons
           url={url}

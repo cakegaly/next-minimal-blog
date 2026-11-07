@@ -1,9 +1,4 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+export { cn } from 'cn';
 
 export function formatDate(input: string | number): string {
   const date = new Date(input);
@@ -17,10 +12,4 @@ export function formatDate(input: string | number): string {
 
 export function absoluteUrl(path: string): string {
   return `${process.env.NEXT_PUBLIC_APP_URL}${path}`;
-}
-
-export function truncateText(inputText: string, maxLength: number): string {
-  return inputText.length > maxLength
-    ? inputText.slice(0, maxLength) + '...'
-    : inputText;
 }

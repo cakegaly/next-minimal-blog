@@ -1,5 +1,3 @@
-import type { BlogPost } from '@/lib/mdx';
-
 export interface PaginationResult<T> {
   items: T[];
   currentPage: number;
@@ -25,12 +23,4 @@ export function paginateItems<T>(
     totalPages,
     totalItems,
   };
-}
-
-export function getPaginatedBlogPosts(
-  allPosts: BlogPost[],
-  page = 1,
-  pageSize = 10
-): PaginationResult<BlogPost> {
-  return paginateItems(allPosts, page, pageSize);
 }

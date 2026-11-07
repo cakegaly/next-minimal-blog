@@ -5,7 +5,7 @@ import { ChevronRightIcon } from 'lucide-react';
 import { tags } from '@/lib/blog';
 import { getAllBlogPosts } from '@/lib/mdx';
 import { cn, formatDate } from '@/lib/utils';
-import { Button, buttonVariants } from '@/components/shadcn-ui/button';
+import { buttonVariants } from '@/components/shadcn-ui/button';
 import { AboutCta } from '@/components/shared/about-cta';
 import { LinkBadge } from '@/components/shared/link-badge';
 import { LinkCard } from '@/components/shared/link-card';
@@ -57,15 +57,16 @@ export default async function IndexPage() {
             ))}
           </div>
           <div className="mt-10 text-end">
-            <Button asChild variant="ghost" className="h-9 px-2">
-              <Link
-                href="/page/1"
-                className="group inline-flex items-center gap-2"
-              >
-                <span>{'See more posts'}</span>
-                <ChevronRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+            <Link
+              href="/page/1"
+              className={cn(
+                buttonVariants({ variant: 'ghost' }),
+                'group h-9 gap-2 px-2'
+              )}
+            >
+              <span>{'See more posts'}</span>
+              <ChevronRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </section>
       </div>
@@ -89,15 +90,16 @@ export default async function IndexPage() {
               ))}
             </div>
             <div className="mt-10 text-center">
-              <Button asChild variant="ghost" className="h-9 px-2">
-                <Link
-                  href="/page/1"
-                  className="group inline-flex items-center gap-2"
-                >
-                  <span>{'See more posts'}</span>
-                  <ChevronRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              <Link
+                href="/page/1"
+                className={cn(
+                  buttonVariants({ variant: 'ghost' }),
+                  'group h-9 gap-2 px-2'
+                )}
+              >
+                <span>{'See more posts'}</span>
+                <ChevronRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </section>
 

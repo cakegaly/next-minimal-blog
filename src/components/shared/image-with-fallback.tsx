@@ -20,8 +20,8 @@ export function ImageWithFallback({
 
   if (error || !src) {
     return (
-      <div className="bg-muted/30 flex h-full w-full items-center justify-center">
-        <span className="text-muted-foreground/20 text-4xl">🔗</span>
+      <div className="flex h-full w-full items-center justify-center bg-muted/30">
+        <span className="text-4xl text-muted-foreground/20">🔗</span>
       </div>
     );
   }

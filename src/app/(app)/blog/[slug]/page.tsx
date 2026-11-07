@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <article className="relative">
               <header className="mb-10 space-y-2 md:space-y-6">
                 {/* Date & Time */}
-                <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-[11px] md:text-xs">
+                <div className="flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground md:text-xs">
                   {post.metadata.date && (
                     <div className="inline-flex items-center gap-1">
                       <time dateTime={post.metadata.date}>

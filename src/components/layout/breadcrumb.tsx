@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 import {
@@ -26,14 +27,16 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
       <BreadcrumbCN>
         <BreadcrumbList className="flex-nowrap">
           <BreadcrumbItemCN className="hover:underline">
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink render={<Link href="/" />}>Home</BreadcrumbLink>
           </BreadcrumbItemCN>
           <BreadcrumbSeparator />
           {items.map((item, index) => (
             <React.Fragment key={`breadcrumb_items_${index}`}>
               <BreadcrumbItemCN className={item.link && 'hover:underline'}>
                 {item.link ? (
-                  <BreadcrumbLink href={item.link}>{item.label}</BreadcrumbLink>
+                  <BreadcrumbLink render={<Link href={item.link} />}>
+                    {item.label}
+                  </BreadcrumbLink>
                 ) : (
                   <BreadcrumbPage>{item.label}</BreadcrumbPage>
                 )}

@@ -1,5 +1,3 @@
-'use server';
-
 import { cache } from 'react';
 
 interface OGData {

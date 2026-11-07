@@ -11,7 +11,7 @@ export const mdxComponents = {
   h1: ({ className, ...props }: React.ComponentProps<'h1'>) => (
     <h1
       className={cn(
-        'font-heading mt-2 scroll-m-28 text-3xl font-bold tracking-tight',
+        'mt-2 scroll-m-28 font-heading text-3xl font-bold tracking-tight',
         className
       )}
       {...props}
@@ -27,7 +27,7 @@ export const mdxComponents = {
           .replace(/\?/g, '')
           .toLowerCase()}
         className={cn(
-          'font-heading mt-12 scroll-m-28 text-2xl font-medium tracking-tight first:mt-0 lg:mt-20 [&+p]:!mt-4',
+          'mt-12 scroll-m-28 font-heading text-2xl font-medium tracking-tight first:mt-0 lg:mt-20 [&+p]:mt-4!',
           className
         )}
         {...props}
@@ -37,7 +37,7 @@ export const mdxComponents = {
   h3: ({ className, ...props }: React.ComponentProps<'h3'>) => (
     <h3
       className={cn(
-        'font-heading mt-8 scroll-m-28 text-xl font-semibold tracking-tight',
+        'mt-8 scroll-m-28 font-heading text-xl font-semibold tracking-tight',
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ export const mdxComponents = {
   h4: ({ className, ...props }: React.ComponentProps<'h4'>) => (
     <h4
       className={cn(
-        'font-heading mt-8 scroll-m-28 text-lg font-medium tracking-tight',
+        'mt-8 scroll-m-28 font-heading text-lg font-medium tracking-tight',
         className
       )}
       {...props}
@@ -171,7 +171,7 @@ export const mdxComponents = {
     return (
       <figcaption
         className={cn(
-          'text-code-foreground [&_svg]:text-code-foreground flex items-center gap-2 [&_svg]:size-4 [&_svg]:opacity-70',
+          'flex items-center gap-2 text-code-foreground [&_svg]:size-4 [&_svg]:text-code-foreground [&_svg]:opacity-70',
           className
         )}
         {...props}
@@ -195,7 +195,7 @@ export const mdxComponents = {
       return (
         <code
           className={cn(
-            'bg-muted relative rounded-md px-[0.3rem] py-[0.1rem] font-mono outline-none',
+            'relative rounded-md bg-muted px-[0.3rem] py-[0.1rem] font-mono outline-none',
             className
           )}
           {...props}

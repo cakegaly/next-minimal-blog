@@ -18,11 +18,11 @@ export function Author({ name, imageUrl, twitterId }: AuthorProps) {
         alt={name}
         width={42}
         height={42}
-        className="bg-muted rounded-full"
+        className="rounded-full bg-muted"
       />
       <div className="flex-1 text-left leading-tight">
         <p className="font-medium">{name}</p>
-        <p className="text-muted-foreground text-xs">@{twitterId}</p>
+        <p className="text-xs text-muted-foreground">@{twitterId}</p>
       </div>
     </Link>
   );

@@ -27,31 +27,33 @@ export function CopyButton({
   const [hasCopied, setHasCopied] = React.useState(false);
 
   React.useEffect(() => {
-    setTimeout(() => {
-      setHasCopied(false);
-    }, 2000);
-  }, []);
+    if (!hasCopied) return;
+    const timer = setTimeout(() => setHasCopied(false), 2000);
+    return () => clearTimeout(timer);
+  }, [hasCopied]);
 
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          data-slot="copy-button"
-          size="icon"
-          variant={variant}
-          className={cn(
-            'bg-code absolute top-3 right-2 z-10 size-7 hover:opacity-100 focus-visible:opacity-100',
-            className
-          )}
-          onClick={() => {
-            copyToClipboardWithMeta(value);
-            setHasCopied(true);
-          }}
-          {...props}
-        >
-          <span className="sr-only">Copy</span>
-          {hasCopied ? <CheckIcon /> : <ClipboardIcon />}
-        </Button>
+      <TooltipTrigger
+        render={
+          <Button
+            data-slot="copy-button"
+            size="icon"
+            variant={variant}
+            className={cn(
+              'absolute top-3 right-2 z-10 size-7 bg-code hover:opacity-100 focus-visible:opacity-100',
+              className
+            )}
+            onClick={() => {
+              copyToClipboardWithMeta(value);
+              setHasCopied(true);
+            }}
+            {...props}
+          />
+        }
+      >
+        <span className="sr-only">Copy</span>
+        {hasCopied ? <CheckIcon /> : <ClipboardIcon />}
       </TooltipTrigger>
       <TooltipContent>
         {hasCopied ? 'Copied' : 'Copy to Clipboard'}

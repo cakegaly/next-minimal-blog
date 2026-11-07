@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/config';
 import { fontVariables } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
-import { Toaster } from '@/components/shadcn-ui/sonner';
+import { TooltipProvider } from '@/components/shadcn-ui/tooltip';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import { TailwindIndicator } from '@/components/shared/tailwind-indicator';
 
@@ -61,14 +61,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head />
       <body
         className={cn(
-          'text-foreground overscroll-none font-sans antialiased',
+          'overscroll-none font-sans text-foreground antialiased',
           fontVariables
         )}
       >
         <ThemeProvider>
-          {children}
-          <TailwindIndicator />
-          <Toaster position="top-center" />
+          <TooltipProvider>
+            {children}
+            <TailwindIndicator />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
