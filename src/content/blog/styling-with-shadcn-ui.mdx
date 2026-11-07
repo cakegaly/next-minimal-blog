@@ -1,0 +1,42 @@
+---
+title: Styling with shadcn/ui and Tailwind CSS
+description: The UI is built from shadcn/ui components. Add more with the CLI, and change the look with CSS variables.
+date: 2026-11-03
+tags:
+  - tailwind
+---
+
+## Components
+
+The shadcn/ui components are in `src/components/ui`.
+They are plain source files in your project, so you can read and edit them.
+Most of them are already installed. To add one that is not, use the CLI:
+
+```bash
+pnpm dlx shadcn@latest add chart
+```
+
+This blog uses only a few of them. For example, the post list on the home page is built with `Card` and `Item`.
+
+## Colors and radius
+
+The theme is defined with CSS variables in `src/app/globals.css`.
+Change a value, and every component follows:
+
+```css title="src/app/globals.css"
+:root {
+  --primary: oklch(0.205 0 0);
+  --radius: 0.625rem;
+}
+
+.dark {
+  --primary: oklch(0.922 0 0);
+}
+```
+
+The top part of the file is the shadcn/ui default. Blog-specific styles are kept at the bottom, so they are easy to find.
+
+## Dark mode
+
+Dark mode follows your system setting by default.
+Use the button in the header, or press <Kbd>d</Kbd> on your keyboard, to switch.

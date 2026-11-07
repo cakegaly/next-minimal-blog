@@ -1,0 +1,58 @@
+---
+title: Code blocks with titles and line numbers
+description: Fenced code blocks are highlighted with Shiki at build time and rendered with the shadcn/ui Code Block component.
+date: 2026-11-05
+tags:
+  - mdx
+  - typescript
+---
+
+Write a fenced code block with a language name, and it is highlighted at build time.
+No highlighting code is sent to the browser.
+
+```ts
+export function greet(name: string) {
+  return `Hello, ${name}!`
+}
+```
+
+Every block has a copy button. Hover over the block (or tap it on mobile) to see it.
+
+## Title and line numbers
+
+Add `title="..."` and `showLineNumbers` after the language name:
+
+````md
+```tsx title="src/app/page.tsx" showLineNumbers
+export default function Page() {
+  return <h1>Hello</h1>
+}
+```
+````
+
+The result:
+
+```tsx title="src/app/page.tsx" showLineNumbers
+export default function Page() {
+  return <h1>Hello</h1>
+}
+```
+
+## Supported languages
+
+The languages are listed in `src/lib/highlighter.tsx`.
+To support a new one, add a line. Each language is loaded only when a post uses it.
+
+```tsx title="src/lib/highlighter.tsx"
+const languages = {
+  // ...
+  python: () => import("shiki/langs/python.mjs"),
+  rust: () => import("shiki/langs/rust.mjs"), // added
+}
+```
+
+If a language is not in the list, the code is still shown, just without colors:
+
+```plaintext
+This block uses "plaintext", so it is not highlighted.
+```

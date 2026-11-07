@@ -1,0 +1,43 @@
+---
+title: Building and deploying your blog
+description: Every page is generated at build time. Set one environment variable and deploy anywhere that runs Next.js.
+date: 2026-11-01
+tags:
+  - nextjs
+---
+
+## Environment variable
+
+Set your site URL. It is used for links in RSS, the sitemap, and Open Graph tags:
+
+```bash title=".env.local"
+NEXT_PUBLIC_APP_URL=https://your-blog.example.com
+```
+
+## Build
+
+```bash
+pnpm build
+```
+
+Post pages, tag pages, and list pages are all generated as static HTML.
+They use `generateStaticParams` to tell Next.js which pages exist:
+
+```tsx title="src/app/(app)/blog/[slug]/page.tsx"
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+```
+
+Because `dynamicParams` is `false`, a URL for a post that does not exist returns the 404 page.
+
+## Deploy
+
+Push the repository to GitHub and import it on [Vercel](https://vercel.com).
+Remember to add `NEXT_PUBLIC_APP_URL` in the project settings.
+
+After deploying, your feed is at `/rss.xml` and the sitemap is at `/sitemap.xml`.

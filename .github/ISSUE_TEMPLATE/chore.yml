@@ -1,7 +1,7 @@
 name: Chore Issue
 description: Add a Chore issue
-title: '[Chore]: '
-labels: ['chore']
+title: "[Chore]: "
+labels: ["chore"]
 assignees:
   - octocat
 body:
@@ -15,6 +15,6 @@ body:
       label: What happened?
       description: Also tell us, what did you expect to happen?
       placeholder: Tell us what you see!
-      value: '- '
+      value: "- "
     validations:
       required: true

@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react"
+import Link from "next/link"
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils"
 import {
   Breadcrumb as BreadcrumbCN,
   BreadcrumbItem as BreadcrumbItemCN,
@@ -9,21 +9,21 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/shadcn-ui/breadcrumb';
+} from "@/components/ui/breadcrumb"
 
 interface BreadcrumbProps {
-  items: BreadcrumbItem[];
-  className?: string;
+  items: BreadcrumbItem[]
+  className?: string
 }
 
 export interface BreadcrumbItem {
-  link?: string;
-  label: string;
+  link?: string
+  label: string
 }
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
-    <div className={cn('overflow-x-scroll whitespace-nowrap', className)}>
+    <div className={cn("overflow-x-scroll whitespace-nowrap", className)}>
       <BreadcrumbCN>
         <BreadcrumbList className="flex-nowrap">
           <BreadcrumbItemCN className="hover:underline">
@@ -32,7 +32,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
           <BreadcrumbSeparator />
           {items.map((item, index) => (
             <React.Fragment key={`breadcrumb_items_${index}`}>
-              <BreadcrumbItemCN className={item.link && 'hover:underline'}>
+              <BreadcrumbItemCN className={item.link && "hover:underline"}>
                 {item.link ? (
                   <BreadcrumbLink render={<Link href={item.link} />}>
                     {item.label}
@@ -47,5 +47,5 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
         </BreadcrumbList>
       </BreadcrumbCN>
     </div>
-  );
+  )
 }

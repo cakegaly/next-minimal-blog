@@ -1,0 +1,33 @@
+---
+title: Embedding link previews
+description: Use the LinkPreview component to show a card for another post or an external page.
+date: 2026-11-02
+tags:
+  - mdx
+---
+
+`<LinkPreview>` shows a link as a card with a title and description.
+
+## Linking to another post
+
+Pass the path of a post. The title and description come from its frontmatter:
+
+```mdx
+<LinkPreview url="/blog/writing-posts-in-mdx" />
+```
+
+<LinkPreview url="/blog/writing-posts-in-mdx" />
+
+## Linking to an external page
+
+Pass a full URL. The card uses the page's Open Graph data:
+
+```mdx
+<LinkPreview url="https://ui.shadcn.com" />
+```
+
+<Callout type="info" title="Fetched at build time">
+  External pages are fetched once, when the site is built. Your readers do not
+  send any requests to that page. If the page cannot be reached during the
+  build, a "Page Not Found" card is shown instead.
+</Callout>

@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { MailIcon, RssIcon } from 'lucide-react';
+import Link from "next/link"
+import { MailIcon, RssIcon } from "lucide-react"
 
-import { siteConfig } from '@/lib/config';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/shadcn-ui/button';
-import { BrandIcons } from '@/components/shared/brand-icons';
+import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { BrandIcons } from "@/components/shared/brand-icons"
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
-    <footer className={cn('container-wrapper', className)}>
+    <footer className={cn("container-wrapper", className)}>
       <div className="container flex flex-col items-center justify-between gap-4 border-t py-10 md:h-24 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
           <p className="text-center font-mono text-xs leading-loose md:text-left">
@@ -21,7 +21,9 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               href={siteConfig.links.twitter}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ variant: 'outline', size: 'icon' })}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "icon" })
+              )}
               aria-label="X(Twitter)"
               title="X(Twitter, @cakegaly)"
             >
@@ -31,7 +33,9 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           {siteConfig.email && (
             <Link
               href={`mailto:${siteConfig.email}`}
-              className={buttonVariants({ variant: 'outline', size: 'icon' })}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "icon" })
+              )}
               target="_blank"
               rel="noreferrer"
               aria-label="Email"
@@ -43,7 +47,9 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           {siteConfig.links.github && (
             <Link
               href={siteConfig.links.github}
-              className={buttonVariants({ variant: 'outline', size: 'icon' })}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "icon" })
+              )}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -54,7 +60,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
           )}
           <Link
             href="/rss.xml"
-            className={buttonVariants({ variant: 'outline', size: 'icon' })}
+            className={cn(buttonVariants({ variant: "outline", size: "icon" }))}
             aria-label="RSS"
             title="RSS Feed (cakegaly -dot- com)"
           >
@@ -63,5 +69,5 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
         </div>
       </div>
     </footer>
-  );
+  )
 }

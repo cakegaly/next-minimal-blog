@@ -1,12 +1,12 @@
-import Link from 'next/link';
+import Link from "next/link"
 
-import { siteConfig } from '@/lib/config';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/shadcn-ui/button';
-import { Separator } from '@/components/shadcn-ui/separator';
-import { ModeSwitcher } from '@/components/layout/mode-switcher';
-import { BrandIcons } from '@/components/shared/brand-icons';
-import { SiteLogo } from '@/components/shared/site-logo';
+import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { ModeSwitcher } from "@/components/layout/mode-switcher"
+import { BrandIcons } from "@/components/shared/brand-icons"
+import { SiteLogo } from "@/components/shared/site-logo"
 
 export function SiteHeader() {
   return (
@@ -16,8 +16,8 @@ export function SiteHeader() {
           <Link
             href="/"
             className={cn(
-              buttonVariants({ variant: 'ghost', size: 'icon' }),
-              'flex size-10'
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "flex size-10"
             )}
           >
             <SiteLogo className="size-8" />
@@ -29,8 +29,8 @@ export function SiteHeader() {
               target="_blank"
               rel="noreferrer"
               className={cn(
-                buttonVariants({ size: 'sm', variant: 'ghost' }),
-                'h-8 shadow-none'
+                buttonVariants({ size: "sm", variant: "ghost" }),
+                "h-8 shadow-none"
               )}
             >
               <BrandIcons.gitHub />
@@ -42,5 +42,5 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  );
+  )
 }

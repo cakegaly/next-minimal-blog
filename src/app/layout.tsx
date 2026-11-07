@@ -1,16 +1,22 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
 
-import { siteConfig } from '@/lib/config';
-import { fontVariables } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
-import { TooltipProvider } from '@/components/shadcn-ui/tooltip';
-import { ThemeProvider } from '@/components/layout/theme-provider';
-import { TailwindIndicator } from '@/components/shared/tailwind-indicator';
+import "./globals.css"
+import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { ThemeProvider } from "@/components/theme-provider"
+import { TailwindIndicator } from "@/components/shared/tailwind-indicator"
 
-import '@/styles/globals.css';
+const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+})
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const metadata: Metadata = {
@@ -22,18 +28,18 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   alternates: {
     types: {
-      'application/rss+xml': [
+      "application/rss+xml": [
         {
-          url: '/rss.xml',
-          title: 'next-minimal-blog RSS Feed',
+          url: "/rss.xml",
+          title: "next-minimal-blog RSS Feed",
         },
       ],
     },
   },
-  keywords: ['Next.js', 'React', 'Tailwind CSS', 'shadcn-ui', 'MDX'],
+  keywords: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "MDX"],
   openGraph: {
-    type: 'website',
-    locale: 'ja_JP',
+    type: "website",
+    locale: "ja_JP",
     url: process.env.NEXT_PUBLIC_APP_URL!,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -41,30 +47,28 @@ export const metadata: Metadata = {
     images: [`${process.env.NEXT_PUBLIC_APP_URL}/og.png`],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${process.env.NEXT_PUBLIC_APP_URL}/og.png`],
-    creator: '@cakegaly',
+    creator: "@cakegaly",
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: `${process.env.NEXT_PUBLIC_APP_URL}/site.webmanifest`,
-};
+}
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ja" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          'overscroll-none font-sans text-foreground antialiased',
-          fontVariables
-        )}
-      >
+    <html
+      lang="ja"
+      suppressHydrationWarning
+      className={cn("antialiased", fontSans.variable, fontMono.variable)}
+    >
+      <body className="overscroll-none">
         <ThemeProvider>
           <TooltipProvider>
             {children}
@@ -73,5 +77,5 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

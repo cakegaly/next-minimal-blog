@@ -1,8 +1,8 @@
 export interface PaginationResult<T> {
-  items: T[];
-  currentPage: number;
-  totalPages: number;
-  totalItems: number;
+  items: T[]
+  currentPage: number
+  totalPages: number
+  totalItems: number
 }
 
 export function paginateItems<T>(
@@ -10,17 +10,17 @@ export function paginateItems<T>(
   page = 1,
   pageSize = 10
 ): PaginationResult<T> {
-  const totalItems = items.length;
-  const totalPages = Math.ceil(totalItems / pageSize);
-  const currentPage = Math.max(1, Math.min(page, totalPages));
+  const totalItems = items.length
+  const totalPages = Math.ceil(totalItems / pageSize)
+  const currentPage = Math.max(1, Math.min(page, totalPages))
 
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = Math.min(startIndex + pageSize, totalItems);
+  const startIndex = (currentPage - 1) * pageSize
+  const endIndex = Math.min(startIndex + pageSize, totalItems)
 
   return {
     items: items.slice(startIndex, endIndex),
     currentPage,
     totalPages,
     totalItems,
-  };
+  }
 }
