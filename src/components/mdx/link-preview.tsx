@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { ExternalLinkIcon } from "lucide-react"
 
-import { siteConfig } from "@/lib/config"
 import { getBlogPostBySlug } from "@/lib/mdx"
 import { getOGData } from "@/lib/og"
 import { cn } from "@/lib/utils"
@@ -11,8 +10,6 @@ import {
   Item,
   ItemContent,
   ItemDescription,
-  ItemHeader,
-  ItemMedia,
   ItemTitle,
 } from "@/components/ui/item"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -48,7 +45,7 @@ function LinkPreviewCard({
   return (
     <Item
       variant="outline"
-      className={cn("my-4 flex-nowrap items-stretch p-0", className)}
+      className={cn("my-6 flex-nowrap items-stretch gap-0 p-0", className)}
       render={
         isExternal ? (
           <a href={url} target="_blank" rel="noopener noreferrer" />
@@ -57,8 +54,8 @@ function LinkPreviewCard({
         )
       }
     >
-      <ItemContent className="gap-2 p-4">
-        <ItemHeader className="justify-start gap-1.5 text-xs text-muted-foreground">
+      <ItemContent className="min-w-0 gap-1.5 p-4">
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           {isExternal ? (
             <>
               <Image
@@ -74,17 +71,20 @@ function LinkPreviewCard({
           ) : (
             "Blog Post"
           )}
-        </ItemHeader>
-        <ItemTitle className="line-clamp-2 text-base">
-          {error ? "Page Not Found" : title || "Untitled"}
+        </div>
+        <ItemTitle className="text-base">
+          <span className="line-clamp-2">
+            {error ? "Page Not Found" : title || "Untitled"}
+          </span>
         </ItemTitle>
         <ItemDescription>
           {error ? "This page may have been moved or deleted." : description}
         </ItemDescription>
       </ItemContent>
-      <ItemMedia className="relative hidden w-37 shrink-0 self-stretch overflow-hidden rounded-r-lg bg-muted sm:block">
-        <ImageWithFallback src={image} alt={title || "Link preview"} />
-      </ItemMedia>
+      {/* Not ItemMedia: its styles assume a single-row item. */}
+      <div className="relative hidden w-40 shrink-0 overflow-hidden rounded-r-lg border-l bg-muted sm:block">
+        <ImageWithFallback src={image} alt="" />
+      </div>
     </Item>
   )
 }
@@ -101,7 +101,7 @@ async function InternalLinkPreview({ url, className }: LinkPreviewProps) {
       url={url}
       title={post.metadata.title}
       description={post.metadata.description}
-      image={siteConfig.ogImage}
+      image={post.metadata.thumbnail || "/og.png"}
       className={className}
     />
   )

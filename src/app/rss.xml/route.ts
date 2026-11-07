@@ -3,6 +3,9 @@ import { NextResponse } from "next/server"
 import { siteConfig } from "@/lib/config"
 import { getAllBlogPosts } from "@/lib/mdx"
 
+// Generate the feed once at build time, like every other page.
+export const dynamic = "force-static"
+
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || siteConfig.url
   const posts = await getAllBlogPosts()

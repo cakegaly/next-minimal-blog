@@ -1,13 +1,13 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  devIndicators: false,
   images: {
-    minimumCacheTTL: 2678400,
+    // Favicons shown in <LinkPreview> cards for external links.
     remotePatterns: [
       {
         protocol: "https",
         hostname: "www.google.com",
+        pathname: "/s2/favicons",
       },
     ],
   },

@@ -22,7 +22,10 @@ export function PostItem({ post }: { post: BlogPost }) {
     <Item className="px-2 py-4" render={<Link href={`/blog/${post.slug}`} />}>
       <ItemContent className="gap-1.5">
         <PostMeta date={date} tags={tags} />
-        <ItemTitle className="line-clamp-2 text-base">{title}</ItemTitle>
+        <ItemTitle className="text-base">
+          {/* line-clamp on an inner span: ItemTitle itself is display:flex */}
+          <span className="line-clamp-2">{title}</span>
+        </ItemTitle>
         {description && <ItemDescription>{description}</ItemDescription>}
       </ItemContent>
       <ItemActions className="hidden text-muted-foreground sm:flex">

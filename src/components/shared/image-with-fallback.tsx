@@ -32,7 +32,7 @@ export function ImageWithFallback({
       alt={alt}
       className={cn("object-cover", className)}
       fill
-      sizes="148px"
+      sizes="160px"
       onError={() => setError(true)}
       unoptimized={src.startsWith("http")}
     />
