@@ -1,0 +1,51 @@
+---
+title: Building and deploying your blog
+description: Every page is generated at build time. Deploy to Vercel with zero configuration, or anywhere that runs Next.js.
+date: 2026-11-01
+tags:
+  - nextjs
+---
+
+## Site URL
+
+The site URL is used for absolute links in RSS, the sitemap, and Open Graph tags.
+It is resolved in `src/lib/config.ts`:
+
+1. `NEXT_PUBLIC_APP_URL`, if you set it
+2. On Vercel, your production domain (set automatically)
+3. Otherwise, `http://localhost:8888`
+
+So on Vercel you do not need to set anything. To use a custom domain, or to deploy somewhere else, set it explicitly:
+
+```bash title=".env.local"
+NEXT_PUBLIC_APP_URL=https://your-blog.example.com
+```
+
+## Build
+
+```bash
+pnpm build
+```
+
+Post pages, tag pages, and list pages are all generated as static HTML.
+They use `generateStaticParams` to tell Next.js which pages exist:
+
+```tsx title="src/app/(app)/blog/[slug]/page.tsx"
+export const dynamic = "force-static"
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+```
+
+Because `dynamicParams` is `false`, a URL for a post that does not exist returns the 404 page.
+
+## Deploy
+
+Push the repository to GitHub and import it on [Vercel](https://vercel.com).
+Every push to your main branch triggers a new build. A new post appears once that build finishes.
+If a post does not show up, check the build log on Vercel first.
+
+After deploying, your feed is at `/rss.xml` and the sitemap is at `/sitemap.xml`.

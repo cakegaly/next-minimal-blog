@@ -1,18 +1,7 @@
-# Build outputs
-.next/
-build/
 dist/
-out/
-coverage/
-
-# Dependencies
 node_modules/
-yarn.lock
-package-lock.json
+.next/
+.turbo/
+coverage/
 pnpm-lock.yaml
-
-# Environment and config
-.env*
-
-# Generated files
-*.generated.*
+.pnpm-store/

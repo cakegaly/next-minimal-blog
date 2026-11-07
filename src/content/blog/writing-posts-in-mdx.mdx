@@ -1,0 +1,60 @@
+---
+title: Writing posts in MDX
+description: Create a new .mdx file, fill in the frontmatter, and write Markdown. You can also use React components inside your posts.
+date: 2026-11-06
+tags:
+  - mdx
+---
+
+Every post is a single `.mdx` file in `src/content/blog`.
+The file name becomes the URL, so `hello-world.mdx` is published at `/blog/hello-world`.
+
+## Frontmatter
+
+Each file starts with a frontmatter block:
+
+```yaml title="src/content/blog/hello-world.mdx"
+---
+title: Hello world
+description: Shown in post lists, RSS, and search results.
+date: 2026-11-07
+thumbnail: /images/hello.png # optional
+tags:
+  - nextjs
+---
+```
+
+Posts are sorted by `date`, newest first.
+
+## Markdown
+
+Regular Markdown works as expected, including [GitHub Flavored Markdown](https://github.github.com/gfm/):
+
+- **Bold**, _italic_, and `inline code`
+- Links and images
+- Tables and task lists
+
+- [x] Write the first post
+- [ ] Share it
+
+> Blockquotes are useful for notes and quotes.
+
+## Using components
+
+MDX lets you use React components right inside your post.
+The components available in posts are listed in `src/components/mdx/mdx-components.tsx`.
+For example, `<Callout>`:
+
+```mdx
+<Callout type="warning" title="Heads up">
+  Callouts are good for tips and warnings.
+</Callout>
+```
+
+renders like this:
+
+<Callout type="warning" title="Heads up">
+  Callouts are good for tips and warnings.
+</Callout>
+
+The `type` can be `info`, `note`, `warning`, or `danger`.

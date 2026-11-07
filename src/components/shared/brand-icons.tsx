@@ -1,6 +1,6 @@
-import { FileIcon } from 'lucide-react';
+import { FileIcon } from "lucide-react"
 
-type IconProps = React.HTMLAttributes<SVGElement>;
+type IconProps = React.HTMLAttributes<SVGElement>
 
 /**
  * BrandIcons are sourced from https://simpleicons.org/.
@@ -215,25 +215,25 @@ export const BrandIcons = {
       <path fill="currentColor" d="m12 1.608 12 20.784H0Z" />
     </svg>
   ),
-};
+}
 
 export function getIconForLanguageExtension(language: string) {
   switch (language) {
-    case 'json':
-      return <BrandIcons.json />;
-    case 'html':
-      return <BrandIcons.html />;
-    case 'css':
-      return <BrandIcons.css className="fill-foreground" />;
-    case 'js':
-    case 'jsx':
-    case 'javascript':
-      return <BrandIcons.js className="fill-foreground" />;
-    case 'ts':
-    case 'tsx':
-    case 'typescript':
-      return <BrandIcons.ts className="fill-foreground" />;
+    case "json":
+      return <BrandIcons.json />
+    case "html":
+      return <BrandIcons.html />
+    case "css":
+      return <BrandIcons.css className="fill-foreground" />
+    case "js":
+    case "jsx":
+    case "javascript":
+      return <BrandIcons.js className="fill-foreground" />
+    case "ts":
+    case "tsx":
+    case "typescript":
+      return <BrandIcons.ts className="fill-foreground" />
     default:
-      return <FileIcon />;
+      return <FileIcon />
   }
 }

@@ -12,5 +12,5 @@ export function TailwindIndicator() {
       <div className="hidden xl:max-2xl:block">xl</div>
       <div className="hidden 2xl:block">2xl</div>
     </div>
-  );
+  )
 }

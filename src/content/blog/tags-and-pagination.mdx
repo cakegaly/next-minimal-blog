@@ -1,0 +1,52 @@
+---
+title: Organizing posts with tags
+description: Tags are defined in one TypeScript file. Each tag gets its own page, and long lists are split into pages automatically.
+date: 2026-11-04
+tags:
+  - nextjs
+  - typescript
+---
+
+## Adding tags to a post
+
+List the tag slugs in the frontmatter:
+
+```yaml
+tags:
+  - nextjs
+  - typescript
+```
+
+The tags of this post are shown above the title. Click one to see all posts with that tag.
+
+## Defining tags
+
+Tags are defined in `src/lib/blog.ts`.
+The key is the slug used in frontmatter and URLs (`/tag/nextjs`):
+
+```ts title="src/lib/blog.ts"
+export const tags = {
+  mdx: { name: "MDX", icon: "mdx" },
+  nextjs: { name: "Next.js", icon: "nextjs" },
+  tailwind: { name: "Tailwind CSS", icon: "tailwind" },
+  typescript: { name: "TypeScript", icon: "ts" },
+}
+```
+
+`icon` refers to an icon in `src/components/shared/brand-icons.tsx`.
+Because `tags` is plain TypeScript, a typo in an icon name is caught by the type checker.
+
+If a post uses a tag that is not defined here, the tag is still shown on the post, but without a link or tag page.
+The build log shows a warning, so you can add it later.
+
+## Pagination
+
+The full post list at `/page/1`, `/page/2`, ... shows a fixed number of posts per page.
+Change the number here:
+
+```ts title="src/lib/mdx.ts"
+export const DEFAULT_BLOG_LIST_LIMIT = 6
+```
+
+Every tag page and list page is generated at build time with `generateStaticParams`,
+so the whole site stays static.

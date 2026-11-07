@@ -12,5 +12,5 @@ export const SiteLogo = (props: React.SVGProps<SVGSVGElement>) => {
     >
       <path d="M32 192L96 96L160 192L224 96" />
     </svg>
-  );
-};
+  )
+}

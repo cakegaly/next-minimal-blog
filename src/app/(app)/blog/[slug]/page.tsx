@@ -1,37 +1,37 @@
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation"
 
-import { author, tags } from '@/lib/blog';
-import { siteConfig } from '@/lib/config';
-import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mdx';
-import { absoluteUrl, formatDate } from '@/lib/utils';
-import { ArticleShareButtons } from '@/components/content/article-share-buttons';
-import { Author } from '@/components/content/author';
-import { CustomMDX } from '@/components/content/custom-mdx';
-import { Breadcrumb } from '@/components/layout/breadcrumb';
-import { BlurredHeroImage } from '@/components/shared/blurred-hero-image';
-import { LinkBadge } from '@/components/shared/link-badge';
+import { author, tags } from "@/lib/blog"
+import { absoluteUrl, siteConfig } from "@/lib/config"
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx"
+import { formatDate } from "@/lib/utils"
+import { Author } from "@/components/blog/author"
+import { HeroImage } from "@/components/blog/hero-image"
+import { ShareButtons } from "@/components/blog/share-buttons"
+import { TagBadge } from "@/components/blog/tag-badge"
+import { CustomMDX } from "@/components/mdx/custom-mdx"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
 
-export const revalidate = false;
-export const dynamic = 'force-static';
-export const dynamicParams = false;
+export const revalidate = false
+export const dynamic = "force-static"
+export const dynamicParams = false
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  const allPosts = await getAllBlogPosts();
+  const allPosts = await getAllBlogPosts()
   return allPosts.map((post) => ({
     slug: post.slug,
-  }));
+  }))
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
-    return {};
+    return {}
   }
 
   return {
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     openGraph: {
       title: post.metadata.title,
       description: post.metadata.description,
-      type: 'article',
+      type: "article",
       url: absoluteUrl(`/blog/${post.slug}`),
       images: [
         {
@@ -52,37 +52,31 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.metadata.title,
       description: post.metadata.description,
       images: [siteConfig.ogImage],
     },
-  };
+  }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = await getBlogPostBySlug(slug);
+  const { slug } = await params
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
+  // Link the first tag that has a tag page (see `src/lib/blog.ts`).
+  const primaryTag = post.metadata.tags?.find((tag) => tag in tags)
   const breadcrumbItems = [
-    ...(post.metadata.tags && post.metadata.tags.length > 0
-      ? [
-          {
-            link: `/tag/${post.metadata.tags[0]}`,
-            label: tags[post.metadata.tags[0]].name,
-          },
-        ]
+    ...(primaryTag
+      ? [{ link: `/tag/${primaryTag}`, label: tags[primaryTag].name }]
       : []),
-    {
-      link: '',
-      label: post.metadata.title,
-    },
-  ];
-  const thumbnailUrl = post.metadata.thumbnail;
+    { label: post.metadata.title },
+  ]
+  const thumbnailUrl = post.metadata.thumbnail
 
   return (
     <div className="flex flex-1 flex-col">
@@ -94,7 +88,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         <div className="pt-4">
           {thumbnailUrl && (
-            <BlurredHeroImage
+            <HeroImage
               imageUrl={thumbnailUrl}
               alt={`${post.metadata.title} thumbnail image`}
             />
@@ -102,42 +96,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
       <div className="container-wrapper py-8">
-        <div className="container flex max-w-screen-md flex-col gap-8">
+        <div className="container flex max-w-3xl flex-col gap-8">
           <section className="flex-1">
             <article className="relative">
-              <header className="mb-10 space-y-2 md:space-y-6">
-                {/* Date & Time */}
-                <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-[11px] md:text-xs">
-                  {post.metadata.date && (
-                    <div className="inline-flex items-center gap-1">
-                      <time dateTime={post.metadata.date}>
-                        {`${formatDate(post.metadata.date)}`}
-                      </time>
-                    </div>
-                  )}
-                  <div className="hidden md:flex md:gap-2">
-                    {post.metadata.tags?.map((slug) => (
-                      <LinkBadge
-                        key={slug}
-                        link={`/tag/${slug}`}
-                        label={tags[slug].name}
-                      />
-                    ))}
-                  </div>
+              <header className="mb-10 flex flex-col gap-4 border-b pb-8">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                  <time dateTime={post.metadata.date}>
+                    {formatDate(post.metadata.date)}
+                  </time>
+                  {post.metadata.tags?.map((slug) => (
+                    <TagBadge key={slug} slug={slug} />
+                  ))}
                 </div>
-
-                {/* Title */}
-                <h1 className="text-lg leading-normal font-bold tracking-tight md:text-2xl md:leading-tight md:font-normal">
+                <h1 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl">
                   {post.metadata.title}
                 </h1>
-
-                <div className="py-4">
-                  <Author
-                    name={author.name}
-                    twitterId={author.twitter}
-                    imageUrl={author.image}
-                  />
-                </div>
+                {post.metadata.description && (
+                  <p className="text-muted-foreground md:text-lg">
+                    {post.metadata.description}
+                  </p>
+                )}
+                <Author
+                  name={author.name}
+                  twitterId={author.twitter}
+                  imageUrl={author.image}
+                />
               </header>
 
               {/* Article Content */}
@@ -147,7 +130,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Share Buttons */}
               <div className="py-4">
-                <ArticleShareButtons
+                <ShareButtons
                   url={absoluteUrl(`/blog/${slug}`)}
                   title={post.metadata.title}
                   description={post.metadata.description}
@@ -164,5 +147,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }
