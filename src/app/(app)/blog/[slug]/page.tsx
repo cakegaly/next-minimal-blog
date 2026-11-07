@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation"
 
 import { author, tags } from "@/lib/blog"
-import { siteConfig } from "@/lib/config"
+import { absoluteUrl, siteConfig } from "@/lib/config"
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx"
-import { absoluteUrl, formatDate } from "@/lib/utils"
+import { formatDate } from "@/lib/utils"
 import { Author } from "@/components/blog/author"
 import { HeroImage } from "@/components/blog/hero-image"
 import { ShareButtons } from "@/components/blog/share-buttons"
@@ -68,19 +68,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  // Link the first tag that has a tag page (see `src/lib/blog.ts`).
+  const primaryTag = post.metadata.tags?.find((tag) => tag in tags)
   const breadcrumbItems = [
-    ...(post.metadata.tags && post.metadata.tags.length > 0
-      ? [
-          {
-            link: `/tag/${post.metadata.tags[0]}`,
-            label: tags[post.metadata.tags[0]].name,
-          },
-        ]
+    ...(primaryTag
+      ? [{ link: `/tag/${primaryTag}`, label: tags[primaryTag].name }]
       : []),
-    {
-      link: "",
-      label: post.metadata.title,
-    },
+    { label: post.metadata.title },
   ]
   const thumbnailUrl = post.metadata.thumbnail
 
@@ -111,7 +105,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     {formatDate(post.metadata.date)}
                   </time>
                   {post.metadata.tags?.map((slug) => (
-                    <TagBadge key={slug} slug={slug} label={tags[slug].name} />
+                    <TagBadge key={slug} slug={slug} />
                   ))}
                 </div>
                 <h1 className="font-heading text-3xl font-semibold tracking-tight text-balance md:text-4xl">

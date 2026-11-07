@@ -36,6 +36,9 @@ export const tags = {
 `icon` refers to an icon in `src/components/shared/brand-icons.tsx`.
 Because `tags` is plain TypeScript, a typo in an icon name is caught by the type checker.
 
+If a post uses a tag that is not defined here, the tag is still shown on the post, but without a link or tag page.
+The build log shows a warning, so you can add it later.
+
 ## Pagination
 
 The full post list at `/page/1`, `/page/2`, ... shows a fixed number of posts per page.

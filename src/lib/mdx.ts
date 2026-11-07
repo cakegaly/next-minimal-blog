@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
 
+import { tags } from "@/lib/blog"
 import { paginateItems, PaginationResult } from "@/lib/pagination"
 
 const blogDir = path.join(process.cwd(), "src", "content", "blog")
@@ -27,7 +28,8 @@ export type BlogPost = MDXData<{
 }>
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const posts = await getMDXData(blogDir)
+  const posts: BlogPost[] = await getMDXData(blogDir)
+  warnUnknownTags(posts)
   return posts.sort(
     (a, b) =>
       new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
@@ -84,5 +86,24 @@ async function readMDXFile<T extends object>(
     metadata: data as Frontmatter<T>,
     slug: path.basename(filePath, path.extname(filePath)),
     rawContent: content,
+  }
+}
+
+const warnedTags = new Set<string>()
+
+/**
+ * Posts may use tags that are not defined in `src/lib/blog.ts`. They are
+ * still shown (without a link or tag page), but we warn so typos are noticed.
+ */
+function warnUnknownTags(posts: BlogPost[]) {
+  for (const post of posts) {
+    for (const tag of post.metadata.tags ?? []) {
+      const key = `${post.slug}:${tag}`
+      if (tag in tags || warnedTags.has(key)) continue
+      warnedTags.add(key)
+      console.warn(
+        `[blog] Tag "${tag}" in "${post.slug}.mdx" is not defined in src/lib/blog.ts. It is shown without a tag page.`
+      )
+    }
   }
 }

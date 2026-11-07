@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
 
 import { tags } from "@/lib/blog"
-import { siteConfig } from "@/lib/config"
+import { absoluteUrl, siteConfig } from "@/lib/config"
 import { getBlogPostsByTagSlug } from "@/lib/mdx"
-import { absoluteUrl } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import {
   Item,

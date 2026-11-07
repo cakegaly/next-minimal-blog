@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
+  metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   alternates: {
     types: {
@@ -40,17 +40,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    url: process.env.NEXT_PUBLIC_APP_URL!,
+    url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: [`${process.env.NEXT_PUBLIC_APP_URL}/og.png`],
+    images: [siteConfig.ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${process.env.NEXT_PUBLIC_APP_URL}/og.png`],
+    images: [siteConfig.ogImage],
     creator: "@cakegaly",
   },
   icons: {
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${process.env.NEXT_PUBLIC_APP_URL}/site.webmanifest`,
+  manifest: "/site.webmanifest",
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {

@@ -86,7 +86,7 @@ pnpm i
 cp .env.example .env.local
 ```
 
-Please set `http://localhost:8888` to `NEXT_PUBLIC_APP_URL`.
+`NEXT_PUBLIC_APP_URL` is the public URL of your site. It is optional: when it is not set, the production domain is used on Vercel, and `http://localhost:8888` is used locally. See `src/lib/config.ts`.
 
 ### Build the project
 
